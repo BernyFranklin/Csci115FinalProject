@@ -22,8 +22,8 @@ Order::Order(const string& orderId, int orderPriority, const string& orderDestin
 
     // displayer
     void Order::displayOrder() const {
-    cout << "Order ID:\t" << id << endl
-         << "Priority:\t" << priority << endl
+    cout << "Order ID:\t\t" << id << endl
+         << "Priority:\t\t" << priority << endl
          << "Destination:\tLocation " << destination << endl
          << "-----------------------------------------------" << endl;
 }
