@@ -1,0 +1,3 @@
+/Users/frankbernal/CLionProjects/Csci115FinalProject/cmake-build-debug/CMakeFiles/Csci115FinalProject.dir
+/Users/frankbernal/CLionProjects/Csci115FinalProject/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/frankbernal/CLionProjects/Csci115FinalProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir
