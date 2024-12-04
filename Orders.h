@@ -7,7 +7,7 @@ class Order {
 private:
     string id;
     int priority;
-    char destination;
+    string destination;
 
 public:
     Order(const string& orderId, int orderPriority, const string& orderDestination);
