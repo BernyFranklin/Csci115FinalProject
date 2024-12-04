@@ -4,4 +4,5 @@ project(Csci115FinalProject)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(Csci115FinalProject
-        main.cpp)
+        main.cpp
+        Orders.h)
