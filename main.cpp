@@ -6,6 +6,7 @@
 using namespace std;
 
 int main() {
+    // file contains the original sample input of 50 orders
     string orderFile = "/Users/frankbernal/CLionProjects/Csci115FinalProject/sampleOrders.txt";
     // create the array
     ArrayOrderList orderList;

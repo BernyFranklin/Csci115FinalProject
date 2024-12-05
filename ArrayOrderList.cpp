@@ -47,6 +47,8 @@ void ArrayOrderList::loadFromFile(const string &filename) {
         string id, destination;
         int priority;
 
+        // go through the line, grab the id, go past the comma and grab the priority, skip the comma and
+        // grab the destination. If the line isn't formatted correctly it will skip it
         if (getline(ss, id, ',') && ss >> priority && ss.ignore() && getline(ss, destination)) {
             // create and add order
             addOrder(Order(id, priority, destination));

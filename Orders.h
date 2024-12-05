@@ -5,6 +5,7 @@ using namespace std;
 
 class Order {
 private:
+    // attributes
     string id;
     int priority;
     string destination;
