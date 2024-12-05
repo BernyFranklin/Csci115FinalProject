@@ -61,6 +61,12 @@ build CMakeFiles/Csci115FinalProject.dir/Orders.cpp.o: CXX_COMPILER__Csci115Fina
   OBJECT_DIR = CMakeFiles/Csci115FinalProject.dir
   OBJECT_FILE_DIR = CMakeFiles/Csci115FinalProject.dir
 
+build CMakeFiles/Csci115FinalProject.dir/ArrayOrderList.cpp.o: CXX_COMPILER__Csci115FinalProject_unscanned_Debug /Users/frankbernal/CLionProjects/Csci115FinalProject/ArrayOrderList.cpp || cmake_object_order_depends_target_Csci115FinalProject
+  DEP_FILE = CMakeFiles/Csci115FinalProject.dir/ArrayOrderList.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/Csci115FinalProject.dir
+  OBJECT_FILE_DIR = CMakeFiles/Csci115FinalProject.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Csci115FinalProject
@@ -69,7 +75,7 @@ build CMakeFiles/Csci115FinalProject.dir/Orders.cpp.o: CXX_COMPILER__Csci115Fina
 #############################################
 # Link the executable Csci115FinalProject
 
-build Csci115FinalProject: CXX_EXECUTABLE_LINKER__Csci115FinalProject_Debug CMakeFiles/Csci115FinalProject.dir/main.cpp.o CMakeFiles/Csci115FinalProject.dir/Orders.cpp.o
+build Csci115FinalProject: CXX_EXECUTABLE_LINKER__Csci115FinalProject_Debug CMakeFiles/Csci115FinalProject.dir/main.cpp.o CMakeFiles/Csci115FinalProject.dir/Orders.cpp.o CMakeFiles/Csci115FinalProject.dir/ArrayOrderList.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk
   OBJECT_DIR = CMakeFiles/Csci115FinalProject.dir
   POST_BUILD = :

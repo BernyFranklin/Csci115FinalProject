@@ -7,4 +7,5 @@ add_executable(Csci115FinalProject
         main.cpp
         Orders.h
         Orders.cpp
-        ArrayOrderList.h)
+        ArrayOrderList.h
+        ArrayOrderList.cpp)
