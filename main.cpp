@@ -11,13 +11,18 @@ int main() {
     ArrayOrderList orderList;
     // load current values from list
     orderList.loadFromFile(orderFile);
-    // display the loaded array
-    cout << "Orders loaded from file:" << endl;
-    orderList.displayOrders();
     // test of adding a new order
     orderList.addOrder(Order("ORD51", 3, "Z"));
-    cout << "After adding a new order:" << endl;
-    orderList.displayOrders();
+    // test of search
+    string searchId = "ORD70";
+    int index = orderList.searchByOrderId(searchId);
+
+    if (index != -1) {
+        orderList.displaySingleOrder(index);
+    }
+    else {
+        cout << "Order with ID " << searchId << " not found." << endl;
+    }
 
     return 0;
 }

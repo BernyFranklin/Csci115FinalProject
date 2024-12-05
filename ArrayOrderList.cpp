@@ -62,6 +62,15 @@ void ArrayOrderList::displayOrders() const {
     }
 }
 
+void ArrayOrderList::displaySingleOrder(int index) const {
+    if (index >= 0 && index < size) {
+        orders[index].displayOrder();               // calls displayOrder from Orders module
+    }
+    else {
+        cerr << "Invalid index: " << index << endl;
+    }
+}
+
 int ArrayOrderList::searchByOrderId(const std::string &orderId) const {
     for (int i = 0; i < size; i++) {
         if (orders[i].getId() == orderId) {
