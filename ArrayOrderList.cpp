@@ -61,3 +61,12 @@ void ArrayOrderList::displayOrders() const {
         orders[i].displayOrder();
     }
 }
+
+int ArrayOrderList::searchByOrderId(const std::string &orderId) const {
+    for (int i = 0; i < size; i++) {
+        if (orders[i].getId() == orderId) {
+            return i;
+        }
+    }
+    return -1;
+}
