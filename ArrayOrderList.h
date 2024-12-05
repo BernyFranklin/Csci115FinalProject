@@ -18,10 +18,12 @@ public:
     ArrayOrderList(int initialCapacity = DEFAULT_SIZE);     // constructor with default
     ~ArrayOrderList();                                      // destructor to free up memory
 
+    int getSize() const;
+    Order getOrder(int index) const;
     void addOrder(const Order& order);                      // add order to list
     void loadFromFile(const string& filename);              // load orders
     void displayOrders() const;                             // display all orders
-    void displaySingleOrder(int index) const;                        // display single order
+    void displaySingleOrder(int index) const;               // display single order
     int searchByOrderId(const string& orderId) const;       // linear search for orderId
 };
 #endif

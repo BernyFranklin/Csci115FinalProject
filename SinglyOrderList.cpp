@@ -29,7 +29,7 @@ void SinglyOrderList::addOrder(const Order &order) {
         while (current->next) {
             current = current->next;
         }
-        current->next - newNode;
+        current->next = newNode;
     }
     size++;                                     // increment the size
 }

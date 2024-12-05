@@ -27,6 +27,10 @@ void ArrayOrderList::resize() {
     orders = newOrders;                         // update the pointer
 }
 
+int ArrayOrderList::getSize() const {return size;}
+
+Order ArrayOrderList::getOrder(int index) const {return orders[index];}
+
 void ArrayOrderList::addOrder(const Order& order) {
     if (size >= capacity) {
         resize();                               // resize if the array is full
