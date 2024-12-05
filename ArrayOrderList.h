@@ -1,0 +1,25 @@
+#ifndef ARRAYORDERLIST_H
+#define ARRAYORDERLIST_H
+#include <string>
+#include "Orders.h"
+
+using namespace std;
+
+const int DEFAULT_SIZE = 50;
+class ArrayOrderList {
+private:
+    Order* orders;      // pointer to the dynamic array of orders
+    int size;           // current number of orders
+    int capacity;       // maximum capacity of the array
+
+    void resize();      // resize the array when capacity is exceeded
+
+public:
+    ArrayOrderList(int initialCapacity = DEFAULT_SIZE);     // constructor with default
+    ~ArrayOrderList();                                      // destructor to free up memory
+
+    void addOrder(const Order& order);                      // add order to list
+    void loadFromFile(const string& filename);              // load orders
+    void displayOrders() const;                             // display all orders
+};
+#endif
