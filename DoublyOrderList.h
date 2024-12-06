@@ -23,6 +23,7 @@ public:
     DoublyOrderList();      // constructor
     ~DoublyOrderList();     // destructor
 
+    Node* searchById(const string& orderId) const;                  // search by orderId
     void addOrder(const Order& order);                              // adds order to end of list
     bool removeOrder(const string& orderId);                        // removes order from list
     void displayForward() const;                                    // display orders forward

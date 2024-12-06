@@ -16,6 +16,17 @@ DoublyOrderList::~DoublyOrderList() {
     }
 }
 
+// search for an orderId
+DoublyOrderList::Node* DoublyOrderList::searchById(const std::string &orderId) const {
+    Node* current = head;               // start at the head
+    while (current) {
+        if (current->data.getId() == orderId) {
+            return current;             // return the pointer if found
+        }
+        current = current->next;
+    }
+    return nullptr;                     // not found
+}
 // add order to end of list
 void DoublyOrderList::addOrder(const Order &order) {
     Node* newNode = new Node(order);
@@ -32,39 +43,32 @@ void DoublyOrderList::addOrder(const Order &order) {
 }
 
 bool DoublyOrderList::removeOrder(const std::string &orderId) {
-    Node* current = head;
+    Node* targetNode = searchById(orderId);
 
-    // traverse the list to find the node
-    while(current) {
-        if (current->data.getId() == orderId) {
-            // node found
-            // check if head
-            if (current->prev) {
-                // not the head
-                current->prev->next = current->next;        // previous node now points to new neighbor
-            }
-            else {
-                // is the head
-                head = current->next;                       // behind the head is another head
-            }
-            // check if tail
-            if (current->next) {
-                //not the tail
-                current->next->prev = current->prev;        // next node points to new neighbor
-            }
-            else {
-                // is the tail
-                tail = current->prev;                       // cut the tail to reveal another tail... like a lizard
-            }
-
-            delete current;                                 // free up memory
-            size--;                                         // decrease size of list
-            return true;                                    // we deleted it!
-        }
-        current = current->next;                            // move to the next node
+    // Node found, handle diff cases
+    if (targetNode == head && targetNode == tail) {
+        // single node in list
+        head = tail = nullptr;
+    }
+    else if (targetNode == head) {
+        // remove the head!
+        head = head->next;
+        head->prev = nullptr;
+    }
+    else if (targetNode == tail) {
+        // cut off the tail
+        tail = tail->prev;
+        tail->next = nullptr;
+    }
+    else {
+        // remove any other node
+        targetNode->prev->next = targetNode->next;
+        targetNode->next->prev = targetNode->prev;
     }
 
-    return false;                                           // we didn't find the node
+    delete targetNode;          // free memory
+    size--;                     // reduce size
+    return true;
 }
 
 // display orders --This Way-->
