@@ -3,6 +3,7 @@
 #include "Orders.h"
 #include "ArrayOrderList.h"
 #include "SinglyOrderList.h"
+#include "DoublyOrderList.h"
 
 using namespace std;
 
@@ -11,39 +12,31 @@ int main() {
     string orderFile = "/Users/frankbernal/CLionProjects/Csci115FinalProject/sampleOrders.txt";
 
     // create the array
-    ArrayOrderList orderList;
+    ArrayOrderList arrayList;
     // load current values from list
-    orderList.loadFromFile(orderFile);
+    arrayList.loadFromFile(orderFile);
 
     // create the SinglyLinkedList
-    SinglyOrderList singlyOrderList;
+    SinglyOrderList singlyList;
 
     // iterate through array and fill the list
-    for (int i = 0; i < orderList.getSize(); i++) {
-        singlyOrderList.addOrder(orderList.getOrder(i));
+    for (int i = 0; i < arrayList.getSize(); i++) {
+        singlyList.addOrder(arrayList.getOrder(i));
     }
 
-    // display the list
-    cout << "Orders in the singly linked list:" << endl;
-    singlyOrderList.displayOrders();
+    // create DoublyOrderList
+    DoublyOrderList doublyList;
+    doublyList.convertFromSingly(singlyList);
 
-    // test add
-    singlyOrderList.addOrder(Order("ORD52", 1, "Y"));
+    // display forward
+    cout << "Doubly list forward:" << endl;
+    doublyList.displayForward();
 
-    cout << "Updated orders:" << endl;
-    singlyOrderList.displayOrders();
+    //displaybackward
+    cout << "Doubly list backward:" << endl;
+    doublyList.displayBackward();
 
-    // test search
-    string searchId = "ORD60";
-    const Order* result = singlyOrderList.searchByOrderId(searchId);
 
-    if (result) {
-        cout << "Order found: " << endl;
-        result->displayOrder();             // display order
-    }
-    else {
-        cout << "Order with ID " << searchId << " not found." << endl;
-    }
 
 
 
