@@ -25,6 +25,9 @@ DoublyOrderList::Node* DoublyOrderList::searchById(const std::string &orderId) c
         }
         current = current->next;
     }
+
+    // not found
+    cout << "Order with ID " << orderId << " not found." << endl;
     return nullptr;                     // not found
 }
 // add order to end of list
@@ -42,8 +45,10 @@ void DoublyOrderList::addOrder(const Order &order) {
     size++;                             // increase the size of the list
 }
 
-bool DoublyOrderList::removeOrder(const std::string &orderId) {
+void DoublyOrderList::removeOrder(const std::string &orderId) {
     Node* targetNode = searchById(orderId);
+    // node not found
+    if (!targetNode) return;
 
     // Node found, handle diff cases
     if (targetNode == head && targetNode == tail) {
@@ -68,7 +73,6 @@ bool DoublyOrderList::removeOrder(const std::string &orderId) {
 
     delete targetNode;          // free memory
     size--;                     // reduce size
-    return true;
 }
 
 // display orders --This Way-->

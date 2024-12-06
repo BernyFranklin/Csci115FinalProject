@@ -28,13 +28,9 @@ int main() {
     DoublyOrderList doublyList;
     doublyList.convertFromSingly(singlyList);
 
-    // display forward
-    cout << "Doubly list forward:" << endl;
-    doublyList.displayForward();
+    doublyList.removeOrder("ORD70");
 
-    //displaybackward
-    cout << "Doubly list backward:" << endl;
-    doublyList.displayBackward();
+    doublyList.displayForward();
 
 
 
