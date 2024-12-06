@@ -3,6 +3,7 @@
 #include "Orders.h"
 
 class SinglyOrderList {
+    friend class DoublyOrderList;
 private:
     struct Node {
         Order data;         // order object as node data for simplicity
@@ -20,9 +21,14 @@ public:
     SinglyOrderList();      // constructor
     ~SinglyOrderList();     // destructor
 
+    // getter
+    const Node* getHead() const {return head;}                          // BRING ME THE HEAD >:O
+    // functions
     void addOrder(const Order& order);                                  // add order to the list
     const Order* searchByOrderId(const string& orderId) const;          // search function
     void displayOrders() const;                                         // display all orders in the list
 };
+
+
 
 #endif
