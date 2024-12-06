@@ -31,6 +31,42 @@ void DoublyOrderList::addOrder(const Order &order) {
     size++;                             // increase the size of the list
 }
 
+bool DoublyOrderList::removeOrder(const std::string &orderId) {
+    Node* current = head;
+
+    // traverse the list to find the node
+    while(current) {
+        if (current->data.getId() == orderId) {
+            // node found
+            // check if head
+            if (current->prev) {
+                // not the head
+                current->prev->next = current->next;        // previous node now points to new neighbor
+            }
+            else {
+                // is the head
+                head = current->next;                       // behind the head is another head
+            }
+            // check if tail
+            if (current->next) {
+                //not the tail
+                current->next->prev = current->prev;        // next node points to new neighbor
+            }
+            else {
+                // is the tail
+                tail = current->prev;                       // cut the tail to reveal another tail... like a lizard
+            }
+
+            delete current;                                 // free up memory
+            size--;                                         // decrease size of list
+            return true;                                    // we deleted it!
+        }
+        current = current->next;                            // move to the next node
+    }
+
+    return false;                                           // we didn't find the node
+}
+
 // display orders --This Way-->
 void DoublyOrderList::displayForward() const {
     Node* current = head;
