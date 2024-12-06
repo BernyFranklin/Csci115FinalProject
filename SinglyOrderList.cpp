@@ -34,6 +34,17 @@ void SinglyOrderList::addOrder(const Order &order) {
     size++;                                     // increment the size
 }
 
+// search for an order
+const Order* SinglyOrderList::searchByOrderId(const std::string &orderId) const {
+    Node* current = head;                           // start at the head of the list
+    while (current) {
+        if (current->data.getId() == orderId) {
+            return &(current->data);                // return a pointer to the found order
+        }
+        current = current->next;                    // move to the next node
+    }
+    return nullptr;                                 // return nullptr if not found
+}
 // display all orders in the list
 void SinglyOrderList::displayOrders() const {
     Node* current = head;

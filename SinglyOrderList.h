@@ -20,8 +20,9 @@ public:
     SinglyOrderList();      // constructor
     ~SinglyOrderList();     // destructor
 
-    void addOrder(const Order& order);      // add order to the list
-    void displayOrders() const;             // display all orders in the list
+    void addOrder(const Order& order);                                  // add order to the list
+    const Order* searchByOrderId(const string& orderId) const;          // search function
+    void displayOrders() const;                                         // display all orders in the list
 };
 
 #endif

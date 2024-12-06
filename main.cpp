@@ -14,8 +14,6 @@ int main() {
     ArrayOrderList orderList;
     // load current values from list
     orderList.loadFromFile(orderFile);
-    // test of adding a new order
-    orderList.addOrder(Order("ORD51", 3, "Z"));
 
     // create the SinglyLinkedList
     SinglyOrderList singlyOrderList;
@@ -27,6 +25,12 @@ int main() {
 
     // display the list
     cout << "Orders in the singly linked list:" << endl;
+    singlyOrderList.displayOrders();
+
+    // test add
+    singlyOrderList.addOrder(Order("ORD52", 1, "Y"));
+
+    cout << "Updated orders:" << endl;
     singlyOrderList.displayOrders();
 
 
