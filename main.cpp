@@ -27,9 +27,9 @@ int main() {
     // create DoublyOrderList
     DoublyOrderList doublyList;
     doublyList.convertFromSingly(singlyList);
-
+    doublyList.displayForward();
     doublyList.removeOrder("ORD70");
-
+    doublyList.updatePriority("ORD49", 1);
     doublyList.displayForward();
 
 

@@ -3,6 +3,9 @@
 
 using namespace std;
 
+const int PRIORITY_MAX = 5;
+const int PRIORITY_MIN = 1;
+
 // constructor
 DoublyOrderList::DoublyOrderList() : head(nullptr), tail(nullptr), size(0) {}
 
@@ -30,6 +33,7 @@ DoublyOrderList::Node* DoublyOrderList::searchById(const std::string &orderId) c
     cout << "Order with ID " << orderId << " not found." << endl;
     return nullptr;                     // not found
 }
+
 // add order to end of list
 void DoublyOrderList::addOrder(const Order &order) {
     Node* newNode = new Node(order);
@@ -73,6 +77,25 @@ void DoublyOrderList::removeOrder(const std::string &orderId) {
 
     delete targetNode;          // free memory
     size--;                     // reduce size
+}
+
+// update priority levels
+void DoublyOrderList::updatePriority(const std::string &orderId, int newPriority) {
+    // make sure the priority level is valid
+    if (newPriority < PRIORITY_MIN || newPriority > PRIORITY_MAX) {
+        cerr << "Error: Priority must be between 1 and 5." << endl;
+        return;
+    }
+
+    // search for the node
+    Node* targetNode = searchById(orderId);
+
+    // if not found
+    if (!targetNode) return;
+
+    // if found
+    targetNode->data.setPriority(newPriority);
+    cout << "Priority of " << orderId << " updated to level " << newPriority << endl;
 }
 
 // display orders --This Way-->

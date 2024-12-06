@@ -26,6 +26,7 @@ public:
     Node* searchById(const string& orderId) const;                  // search by orderId
     void addOrder(const Order& order);                              // adds order to end of list
     void removeOrder(const string& orderId);                        // removes order from list
+    void updatePriority(const string& orderId, int newPriority);    // updates priority level
     void displayForward() const;                                    // display orders forward
     void displayBackward() const;                                   // display orders backward
     void convertFromSingly(const SinglyOrderList& singlyList);      // convert singly to doubly
