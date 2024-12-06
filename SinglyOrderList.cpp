@@ -49,7 +49,7 @@ const Order* SinglyOrderList::searchByOrderId(const std::string &orderId) const 
 void SinglyOrderList::displayOrders() const {
     Node* current = head;
     while (current) {
-        current->data.displayOrder();           // Use Order's displayOrder function
+        current->data.displayOrder();               // Use Order's displayOrder function
         current = current->next;
     }
 }

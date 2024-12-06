@@ -33,6 +33,18 @@ int main() {
     cout << "Updated orders:" << endl;
     singlyOrderList.displayOrders();
 
+    // test search
+    string searchId = "ORD60";
+    const Order* result = singlyOrderList.searchByOrderId(searchId);
+
+    if (result) {
+        cout << "Order found: " << endl;
+        result->displayOrder();             // display order
+    }
+    else {
+        cout << "Order with ID " << searchId << " not found." << endl;
+    }
+
 
 
     return 0;
