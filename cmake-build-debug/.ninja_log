@@ -1,17 +1,6 @@
 # ninja log v6
-5	390	1733434223136498725	CMakeFiles/Csci115FinalProject.dir/main.cpp.o	6ea27f23f4d08682
-390	440	1733434223521639678	Csci115FinalProject	8cbac799dd525779
-5	384	1733346232135913301	CMakeFiles/Csci115FinalProject.dir/Orders.cpp.o	3393131b45513191
-6	403	1733434210241947933	CMakeFiles/Csci115FinalProject.dir/ArrayOrderList.cpp.o	be1e233b5714a21c
-8	478	1733438011662214056	CMakeFiles/Csci115FinalProject.dir/SinglyOrderList.cpp.o	9be769585abe0424
-6	486	1733438011661012116	CMakeFiles/Csci115FinalProject.dir/main.cpp.o	6ea27f23f4d08682
-7	489	1733438011661794687	CMakeFiles/Csci115FinalProject.dir/Orders.cpp.o	3393131b45513191
-7	499	1733438011662049517	CMakeFiles/Csci115FinalProject.dir/ArrayOrderList.cpp.o	be1e233b5714a21c
-499	551	1733438012153808261	Csci115FinalProject	86c192c9dbc5be4c
-4	911	1733505419773583587	CMakeFiles/Csci115FinalProject.dir/main.cpp.o	6ea27f23f4d08682
-911	1042	1733505420680241220	Csci115FinalProject	86c192c9dbc5be4c
-6	387	1733506384182332497	CMakeFiles/Csci115FinalProject.dir/SinglyOrderList.cpp.o	9be769585abe0424
-6	402	1733506384181978929	CMakeFiles/Csci115FinalProject.dir/main.cpp.o	6ea27f23f4d08682
-402	453	1733506384578385154	Csci115FinalProject	86c192c9dbc5be4c
 5	358	1733506400328359747	CMakeFiles/Csci115FinalProject.dir/main.cpp.o	6ea27f23f4d08682
 358	404	1733506400681910011	Csci115FinalProject	86c192c9dbc5be4c
+7	489	1733438011661794687	CMakeFiles/Csci115FinalProject.dir/Orders.cpp.o	3393131b45513191
+6	387	1733506384182332497	CMakeFiles/Csci115FinalProject.dir/SinglyOrderList.cpp.o	9be769585abe0424
+7	499	1733438011662049517	CMakeFiles/Csci115FinalProject.dir/ArrayOrderList.cpp.o	be1e233b5714a21c
