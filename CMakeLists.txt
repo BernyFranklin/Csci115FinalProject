@@ -12,4 +12,5 @@ add_executable(Csci115FinalProject
         SinglyOrderList.h
         SinglyOrderList.cpp
         DoublyOrderList.h
-        DoublyOrderList.cpp)
+        DoublyOrderList.cpp
+        SkipOrderList.h)
