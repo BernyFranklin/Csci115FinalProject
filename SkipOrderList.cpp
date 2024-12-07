@@ -32,13 +32,15 @@ int SkipOrderList::randomLevel() {
 }
 
 // load list from an array
-void SkipOrderList::loadFromArray(const Order *orders, int arraySize) {
-    for (int i = 0; i < arraySize; i++) {
-        insert(orders[i]);                          // insert each order into the skip list
+void SkipOrderList::loadFromArray(const ArrayOrderList& arrayList) {
+    // iterate through the elements of the array
+    for (int i = 0; i < arrayList.getSize(); i++) {
+        const Order& order = arrayList.getOrder(i);     // retrieve the order from the array
+        insert(order);                                        // insert order into skip list
     }
 }
 // insert an order into the skip list
-void SkipOrderList::insert(const Order &order) {
+void SkipOrderList::insert(const Order& order) {
     vector<Node*> update(maxLevel, nullptr);         // track nodes to update
     Node* current = head;
 
@@ -55,7 +57,7 @@ void SkipOrderList::insert(const Order &order) {
 
     // if the new level is higher than the current level, update head
     if (level > currentLevel) {
-        for (int i = currentLevel +1; i < level; level++) {
+        for (int i = currentLevel + 1; i < level; i++) {
             update[i] = head;
         }
         currentLevel = level - 1;

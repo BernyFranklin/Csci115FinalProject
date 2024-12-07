@@ -2,13 +2,13 @@
 #define SKIP_ORDER_LIST_H
 
 #include "Orders.h"
+#include "ArrayOrderList.h"
+#include <utility>
 #include <vector>
 #include <cstdlib>  // for rand()
 #include <ctime>    // for seed
 
 using namespace std;
-
-const int MAX_LEVEL = 5;
 
 class SkipOrderList {
 private:
@@ -16,7 +16,7 @@ private:
         Order data;             // order object will be data
         vector<Node*> next;     //Pointers to the next nodes at various levels
 
-        Node(const Order&  order, int level)
+        Node(const Order& order, int level)
             : data(order), next(level, nullptr) {}
     };
 
@@ -27,10 +27,10 @@ private:
     int randomLevel();          // generate a random level for a node
 
 public:
-    SkipOrderList(int MAX_LEVEL);       // constructor with a default max level
+    SkipOrderList(int maxLevel = 5);       // constructor with a default max level
     ~SkipOrderList();                   // destructor
 
-    void loadFromArray(const Order orders[], int arraySize);    // load skip list from array
+    void loadFromArray(const ArrayOrderList& arrayList);    // load skip list from array
     void insert(const Order& order);                            // insert an order into the list
     void display() const;                                       // display the skip list
 };

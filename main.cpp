@@ -4,8 +4,10 @@
 #include "ArrayOrderList.h"
 #include "SinglyOrderList.h"
 #include "DoublyOrderList.h"
+#include "SkipOrderList.h"
 
 using namespace std;
+
 
 int main() {
     // file contains the original sample input of 50 orders
@@ -27,14 +29,11 @@ int main() {
     // create DoublyOrderList
     DoublyOrderList doublyList;
     doublyList.convertFromSingly(singlyList);
-    doublyList.displayForward();
-    doublyList.removeOrder("ORD70");
-    doublyList.updatePriority("ORD49", 1);
-    doublyList.displayForward();
 
-
-
-
+    // create SkipOrderList
+    SkipOrderList skipList;
+    skipList.loadFromArray(arrayList);
+    skipList.display();
 
     return 0;
 }
