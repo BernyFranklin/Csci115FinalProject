@@ -20,6 +20,7 @@ public:
     int getSize() const;                                    // gets size
     Order getOrder(int index) const;                        // gets order
     void addOrder(const Order& order);                      // add order to list
+    void removeOrder(const string& orderId);                // removes order by orderId
     void loadFromFile(const string& filename);              // load orders
     void displayOrders() const;                             // display all orders
     void displaySingleOrder(int index) const;               // display single order

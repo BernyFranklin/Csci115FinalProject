@@ -43,6 +43,36 @@ void ArrayOrderList::addOrder(const Order& order) {
     orders[size++] = order;                     // add order and increment size
 }
 
+// removes order by orderId
+void ArrayOrderList::removeOrder(const std::string &orderId) {
+    int index = -1;
+
+    // find the index of the order to be removed
+    for (int i = 0; i < size; i++) {
+        if (orders[i].getId() == orderId) {
+            index = i;
+            break;
+        }
+    }
+
+    // not found
+    if (index == -1) {
+        cerr << "Error: order with ID " << orderId << " not found." << endl;
+        return;
+    }
+
+    // shift elements to the left to fill the gap
+    for (int i = index; i < size - 1; i++) {
+        orders[i] = orders[i+1];
+    }
+
+    // decrease size
+    size--;
+
+    // tell user
+    cout << "Order with ID " << orderId << " removed successfully" << endl;
+}
+
 // loads array from file
 void ArrayOrderList::loadFromFile(const string &filename) {
     ifstream file(filename);

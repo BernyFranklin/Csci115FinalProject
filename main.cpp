@@ -18,7 +18,9 @@ int main() {
     ArrayOrderList arrayList;
     // load current values from list
     arrayList.loadFromFile(orderFile);
-
+    arrayList.displayOrders();
+    arrayList.removeOrder("ORD01");
+    arrayList.displayOrders();
     // create the SinglyLinkedList
     SinglyOrderList singlyList;
 
