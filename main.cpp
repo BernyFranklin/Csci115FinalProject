@@ -11,6 +11,7 @@ using namespace std;
 
 int main() {
     // file contains the original sample input of 50 orders
+    // replace this string to match where the folder is on YOUR machine
     string orderFile = "/Users/frankbernal/CLionProjects/Csci115FinalProject/sampleOrders.txt";
 
     // create the array
@@ -29,15 +30,10 @@ int main() {
     // create DoublyOrderList
     DoublyOrderList doublyList;
     doublyList.convertFromSingly(singlyList);
-    doublyList.displayForward();
 
     // create SkipOrderList
     SkipOrderList skipList;
     skipList.loadFromArray(arrayList);
-    skipList.insert(Order("ORD75", 3, "X"));
-    skipList.display();
-    skipList.search("ORD85");
-    skipList.deleteOrder("ORD02");
-    skipList.display();
+
     return 0;
 }

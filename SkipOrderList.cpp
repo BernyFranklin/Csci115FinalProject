@@ -37,12 +37,12 @@ void SkipOrderList::loadFromArray(const ArrayOrderList& arrayList) {
     // iterate through the elements of the array
     for (int i = 0; i < arrayList.getSize(); i++) {
         const Order& order = arrayList.getOrder(i);     // retrieve the order from the array
-        insert(order);                                        // insert order into skip list
+        addOrder(order);                                        // addOrder order into skip list
     }
 }
 
-// insert an order into the skip list
-void SkipOrderList::insert(const Order& order) {
+// addOrder an order into the skip list
+void SkipOrderList::addOrder(const Order& order) {
     vector<Node*> update(maxLevel, nullptr);         // track nodes to update
     Node* current = head;
 
@@ -76,7 +76,7 @@ void SkipOrderList::insert(const Order& order) {
 }
 
 // delete an order by orderId
-void SkipOrderList::deleteOrder(const std::string &orderId) {
+void SkipOrderList::removeOrder(const string &orderId) {
     vector<Node*> update(maxLevel, nullptr);            // track nodes to update
     Node* current = head;
 

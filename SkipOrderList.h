@@ -31,8 +31,8 @@ public:
     ~SkipOrderList();                   // destructor
 
     void loadFromArray(const ArrayOrderList& arrayList);        // load skip list from array
-    void insert(const Order& order);                            // insert an order into the list
-    void deleteOrder(const string& orderId);                    // delete an order by orderId
+    void addOrder(const Order& order);                            // addOrder an order into the list
+    void removeOrder(const string &orderId);                    // delete an order by orderId
     void search(const string& orderId) const;                   // search by orderId
     void display() const;                                       // display the skip list
 };

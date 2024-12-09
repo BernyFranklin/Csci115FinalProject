@@ -11,15 +11,14 @@ private:
     Order* orders;      // pointer to the dynamic array of orders
     int size;           // current number of orders
     int capacity;       // maximum capacity of the array
-
     void resize();      // resize the array when capacity is exceeded
 
 public:
-    ArrayOrderList(int initialCapacity = DEFAULT_SIZE);     // constructor with default
-    ~ArrayOrderList();                                      // destructor to free up memory
+    explicit ArrayOrderList(int initialCapacity = DEFAULT_SIZE);     // constructor with default
+    ~ArrayOrderList();                                               // destructor to free up memory
 
-    int getSize() const;
-    Order getOrder(int index) const;
+    int getSize() const;                                    // gets size
+    Order getOrder(int index) const;                        // gets order
     void addOrder(const Order& order);                      // add order to list
     void loadFromFile(const string& filename);              // load orders
     void displayOrders() const;                             // display all orders
