@@ -25,7 +25,8 @@ public:
     const Node* getHead() const {return head;}                          // BRING ME THE HEAD >:O
     // functions
     void addOrder(const Order& order);                                  // add order to the list
-    const Order* searchByOrderId(const string& orderId) const;          // search function
+    void removeOrder(const string& orderId);                            // removes order by orderId
+    Node *searchByOrderId(const string& orderId) const;                 // search function
     void displayOrders() const;                                         // display all orders in the list
 };
 
