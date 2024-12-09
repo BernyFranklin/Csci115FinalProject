@@ -75,6 +75,43 @@ void SkipOrderList::insert(const Order& order) {
     }
 }
 
+// delete an order by orderId
+void SkipOrderList::deleteOrder(const std::string &orderId) {
+    vector<Node*> update(maxLevel, nullptr);            // track nodes to update
+    Node* current = head;
+
+    // traverse the list to find the node and prepare to update pointers
+    for (int i = currentLevel; i >= 0; i--) {
+        while (current->next[i] && current->next[i]->data.getId() < orderId) {
+            current = current->next[i];
+        }
+        update[i] = current;                                  // store the node at this level
+    }
+
+    // move to the next node at level 0;
+    current = current->next[0];
+
+    // check if the node to delete exists
+    if (!current || current->data.getId() != orderId) {
+        cerr << "Order with ID " << orderId << " not found." << endl;
+    }
+
+    // update pointers to bypass the node being deleted
+    for (int i = 0; i <= currentLevel; i++ ) {
+        if (update[i]->next[i] == current) {
+            update[i]->next[i] = current->next[i];
+        }
+    }
+
+    // adjust the current level if needed
+    while (currentLevel > 0 && head->next[currentLevel] == nullptr) {
+        currentLevel--;
+    }
+
+    delete current;                                             // free memory
+    cout << "Order with ID " << orderId << " deleted successfully." << endl;
+}
+
 // search by orderId
 void SkipOrderList::search(const std::string &orderId) const {
     Node* current = head;
