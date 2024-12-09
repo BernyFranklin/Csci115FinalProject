@@ -29,10 +29,12 @@ int main() {
     // create DoublyOrderList
     DoublyOrderList doublyList;
     doublyList.convertFromSingly(singlyList);
+    doublyList.displayForward();
 
     // create SkipOrderList
     SkipOrderList skipList;
     skipList.loadFromArray(arrayList);
+    skipList.insert(Order("ORD75", 3, "X"));
     skipList.display();
 
     return 0;

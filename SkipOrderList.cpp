@@ -79,7 +79,7 @@ void SkipOrderList::display() const {
         Node* current = head->next[i];
         cout << "Level " << i << ": ";
         while (current) {
-            cout << "[" << current->data.getId() << "} ";
+            cout << "[" << current->data.getId() << "] ";
             current = current->next[i];
         }
         cout << endl;

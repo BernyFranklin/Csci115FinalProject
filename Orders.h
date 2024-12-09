@@ -15,17 +15,18 @@ public:
     Order();
 
     // setters
-    string getId() const;
-    int getPriority() const;
-    string getDestination() const;
-
-    // getters
     void setId(const string& orderId);
     void setPriority(int orderPriority);
     void setDestination(const string& orderDestination);
+
+
+    // getters
+    string getId() const;
+    int getPriority() const;
+    string getDestination() const;
 
     // displayers
     void displayOrder() const;
 };
 
-#endif //CSCI115FINALPROJECT_ORDERS_H
+#endif

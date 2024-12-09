@@ -16,9 +16,9 @@ Order::Order(const string& orderId, int orderPriority, const string& orderDestin
     string Order::getDestination() const {return destination;}
 
     // setters
-    void Order::setId(const std::string &orderId) {id = orderId;}
+    void Order::setId(const string &orderId) {id = orderId;}
     void Order::setPriority(int orderPriority) {priority = orderPriority;}
-    void Order::setDestination(const std::string &orderDestination) {destination = orderDestination;}
+    void Order::setDestination(const string &orderDestination) {destination = orderDestination;}
 
     // displayer
     void Order::displayOrder() const {

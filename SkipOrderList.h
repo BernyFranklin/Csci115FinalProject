@@ -32,6 +32,7 @@ public:
 
     void loadFromArray(const ArrayOrderList& arrayList);    // load skip list from array
     void insert(const Order& order);                            // insert an order into the list
+    Order search(const string& orderId) const;                  // search by orderId
     void display() const;                                       // display the skip list
 };
 
