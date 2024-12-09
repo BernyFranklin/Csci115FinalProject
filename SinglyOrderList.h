@@ -27,6 +27,7 @@ public:
     void addOrder(const Order& order);                                  // add order to the list
     void removeOrder(const string& orderId);                            // removes order by orderId
     Node *searchByOrderId(const string& orderId) const;                 // search function
+    void updatePriority(const string& orderId, int newPriority);        // updates priority level by orderId
     void displayOrders() const;                                         // display all orders in the list
 };
 

@@ -25,9 +25,6 @@ int main() {
     for (int i = 0; i < arrayList.getSize(); i++) {
         singlyList.addOrder(arrayList.getOrder(i));
     }
-    // delete an order and print
-    singlyList.removeOrder("ORD53");
-    singlyList.displayOrders();
 
     // create DoublyOrderList
     DoublyOrderList doublyList;

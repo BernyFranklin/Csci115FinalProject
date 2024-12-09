@@ -75,6 +75,26 @@ void SinglyOrderList::removeOrder(const std::string &orderId) {
     cout << successString;
 }
 
+// update priority by orderId
+void SinglyOrderList::updatePriority(const std::string &orderId, int newPriority) {
+    // validate priority range
+    if (newPriority < 1 || newPriority > 5) {
+        cerr << "Error: priority must be between 1 and 5" << endl;
+        return;
+    }
+
+    // use searchByOrderId to find the target node
+    Node* targetNode = searchByOrderId(orderId);
+    // if not found
+    if (!targetNode) {
+        cerr << "Error: Order with ID " << orderId << " not found." << endl;
+        return;
+    }
+
+    // update the priority
+    targetNode->data.setPriority(newPriority);
+    cout << "Priority of Order with ID " << orderId << " updated to " << newPriority << "." << endl;
+}
 // search for an order
 SinglyOrderList::Node *SinglyOrderList::searchByOrderId(const std::string &orderId) const {
     Node* current = head;                           // start at the head of the list
