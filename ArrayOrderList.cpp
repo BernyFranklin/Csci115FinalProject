@@ -73,6 +73,39 @@ void ArrayOrderList::removeOrder(const std::string &orderId) {
     cout << "Order with ID " << orderId << " removed successfully" << endl;
 }
 
+// search for an order by orderId
+int ArrayOrderList::searchByOrderId(const std::string &orderId) const {
+    for (int i = 0; i < size; i++) {
+        if (orders[i].getId() == orderId) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// update priority level
+void ArrayOrderList::updatePriority(const std::string &orderId, int newPriority) {
+    // validate range
+    if (newPriority < 1 || newPriority > 5) {
+        cerr << "Error: Priority must be between 1 and 5." << endl;
+        return;
+    }
+
+    // find the order
+    int searchIndex = -1;
+    searchIndex = searchByOrderId(orderId);
+
+    // not found
+    if (searchIndex == -1) {
+        cerr << "Error: Order with ID " << orderId << " not found." << endl;
+    }
+    else{
+        // found, update priority
+        orders[searchIndex].setPriority(newPriority);
+        cout << "Priority of Order with ID " << orderId << " updated to " << newPriority << "." << endl;
+    }
+}
+
 // loads array from file
 void ArrayOrderList::loadFromFile(const string &filename) {
     ifstream file(filename);
@@ -118,12 +151,3 @@ void ArrayOrderList::displaySingleOrder(int index) const {
     }
 }
 
-// search for an order by orderId
-int ArrayOrderList::searchByOrderId(const std::string &orderId) const {
-    for (int i = 0; i < size; i++) {
-        if (orders[i].getId() == orderId) {
-            return i;
-        }
-    }
-    return -1;
-}

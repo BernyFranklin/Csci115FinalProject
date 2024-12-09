@@ -21,6 +21,8 @@ int main() {
     arrayList.displayOrders();
     arrayList.removeOrder("ORD01");
     arrayList.displayOrders();
+    arrayList.updatePriority("ORD50", 1);
+    arrayList.displayOrders();
     // create the SinglyLinkedList
     SinglyOrderList singlyList;
 
