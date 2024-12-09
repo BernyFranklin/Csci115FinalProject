@@ -94,9 +94,11 @@ void SkipOrderList::search(const std::string &orderId) const {
         cout << "Order found: " << endl;
         current->data.displayOrder();                  // return the found order
     }
+    else{
+        // if not found, print error and return an empy order
+        cerr << "Order with ID " << orderId << " not found." << endl;
+    }
 
-    // if not found, print error and return an empy order
-    cerr << "Order with ID " << orderId << " not found." << endl;
 }
 
 // display the skip list
