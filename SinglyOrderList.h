@@ -23,11 +23,14 @@ public:
 
     // getter
     const Node* getHead() const {return head;}                          // BRING ME THE HEAD >:O
-    // functions
+
+    // functions being tested
     void addOrder(const Order& order);                                  // add order to the list
     void removeOrder(const string& orderId);                            // removes order by orderId
-    Node *searchByOrderId(const string& orderId) const;                 // search function
-    void updatePriority(const string& orderId, int newPriority);        // updates priority level by orderId
+    Node *searchByOrderId(const string& orderId) const;                 // searchByOrderId function
+    void updatePriority(const string& orderId, int newPriority) const;  // updates priority level by orderId
+
+    // other functions
     void displayOrders() const;                                         // display all orders in the list
 };
 

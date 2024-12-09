@@ -112,8 +112,8 @@ void SkipOrderList::removeOrder(const string &orderId) {
     cout << "Order with ID " << orderId << " deleted successfully." << endl;
 }
 
-// search by orderId
-void SkipOrderList::search(const std::string &orderId) const {
+// searchByOrderId by orderId
+SkipOrderList::Node *SkipOrderList::searchByOrderId(const string &orderId) const {
     Node* current = head;
 
     // traverse the levels from the top to bottom
@@ -130,12 +130,14 @@ void SkipOrderList::search(const std::string &orderId) const {
     if (current && current->data.getId() == orderId) {
         cout << "Order found: " << endl;
         current->data.displayOrder();                  // return the found order
+        return current;
     }
     else{
-        // if not found, print error and return an empy order
+        // if not found, print error and return an empty order
         cerr << "Order with ID " << orderId << " not found." << endl;
     }
 
+    return nullptr;                     // if not found return null
 }
 
 // display the skip list

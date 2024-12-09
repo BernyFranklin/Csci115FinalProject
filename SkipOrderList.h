@@ -30,11 +30,12 @@ public:
     SkipOrderList(int maxLevel = 5);       // constructor with a default max level
     ~SkipOrderList();                   // destructor
 
-    void loadFromArray(const ArrayOrderList& arrayList);        // load skip list from array
-    void addOrder(const Order& order);                            // addOrder an order into the list
+    void addOrder(const Order& order);                          // addOrder an order into the list
     void removeOrder(const string &orderId);                    // delete an order by orderId
-    void search(const string& orderId) const;                   // search by orderId
+    Node *searchByOrderId(const string& orderId) const;         // searchByOrderId by orderId
+
     void display() const;                                       // display the skip list
+    void loadFromArray(const ArrayOrderList& arrayList);        // load skip list from array
 };
 
 #endif

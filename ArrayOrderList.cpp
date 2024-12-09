@@ -73,7 +73,7 @@ void ArrayOrderList::removeOrder(const std::string &orderId) {
     cout << "Order with ID " << orderId << " removed successfully" << endl;
 }
 
-// search for an order by orderId
+// searchByOrderId for an order by orderId
 int ArrayOrderList::searchByOrderId(const std::string &orderId) const {
     for (int i = 0; i < size; i++) {
         if (orders[i].getId() == orderId) {

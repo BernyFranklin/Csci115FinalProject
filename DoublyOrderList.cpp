@@ -19,8 +19,8 @@ DoublyOrderList::~DoublyOrderList() {
     }
 }
 
-// search for an orderId
-DoublyOrderList::Node* DoublyOrderList::searchById(const std::string &orderId) const {
+// searchByOrderId for an orderId
+DoublyOrderList::Node* DoublyOrderList::searchByOrderId(const string &orderId) const {
     Node* current = head;               // start at the head
     while (current) {
         if (current->data.getId() == orderId) {
@@ -50,7 +50,7 @@ void DoublyOrderList::addOrder(const Order &order) {
 }
 
 void DoublyOrderList::removeOrder(const std::string &orderId) {
-    Node* targetNode = searchById(orderId);
+    Node* targetNode = searchByOrderId(orderId);
     // node not found
     if (!targetNode) return;
 
@@ -87,8 +87,8 @@ void DoublyOrderList::updatePriority(const std::string &orderId, int newPriority
         return;
     }
 
-    // search for the node
-    Node* targetNode = searchById(orderId);
+    // searchByOrderId for the node
+    Node* targetNode = searchByOrderId(orderId);
 
     // if not found
     if (!targetNode) return;

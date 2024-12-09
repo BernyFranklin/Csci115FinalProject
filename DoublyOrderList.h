@@ -23,10 +23,13 @@ public:
     DoublyOrderList();      // constructor
     ~DoublyOrderList();     // destructor
 
-    Node* searchById(const string& orderId) const;                  // search by orderId
+    // functions being tested
     void addOrder(const Order& order);                              // adds order to end of list
     void removeOrder(const string& orderId);                        // removes order from list
+    Node* searchByOrderId(const string& orderId) const;             // searchByOrderId by orderId
     void updatePriority(const string& orderId, int newPriority);    // updates priority level
+
+    // other functions
     void displayForward() const;                                    // display orders forward
     void displayBackward() const;                                   // display orders backward
     void convertFromSingly(const SinglyOrderList& singlyList);      // convert singly to doubly
