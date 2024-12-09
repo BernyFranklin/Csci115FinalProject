@@ -22,6 +22,7 @@ SkipOrderList::~SkipOrderList() {
     }
 }
 
+// functions
 // generate a random level for a new node
 int SkipOrderList::randomLevel() {
     int level = 1;
@@ -39,6 +40,7 @@ void SkipOrderList::loadFromArray(const ArrayOrderList& arrayList) {
         insert(order);                                        // insert order into skip list
     }
 }
+
 // insert an order into the skip list
 void SkipOrderList::insert(const Order& order) {
     vector<Node*> update(maxLevel, nullptr);         // track nodes to update
@@ -71,6 +73,30 @@ void SkipOrderList::insert(const Order& order) {
         newNode->next[i] = update[i]->next[i];
         update[i]->next[i] = newNode;
     }
+}
+
+// search by orderId
+void SkipOrderList::search(const std::string &orderId) const {
+    Node* current = head;
+
+    // traverse the levels from the top to bottom
+    for (int i = currentLevel; i >= 0; i--) {
+        while (current->next[i] && current->next[i]->data.getId() < orderId) {
+            current = current->next[i];         // move forward in the current level
+        }
+    }
+
+    // move to the next node at the lowest level
+    current = current->next[0];
+
+    // check if the orderId matches
+    if (current && current->data.getId() == orderId) {
+        cout << "Order found: " << endl;
+        current->data.displayOrder();                  // return the found order
+    }
+
+    // if not found, print error and return an empy order
+    cerr << "Order with ID " << orderId << " not found." << endl;
 }
 
 // display the skip list

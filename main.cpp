@@ -35,7 +35,6 @@ int main() {
     SkipOrderList skipList;
     skipList.loadFromArray(arrayList);
     skipList.insert(Order("ORD75", 3, "X"));
-    skipList.display();
-
+    skipList.search("ORD75");
     return 0;
 }
