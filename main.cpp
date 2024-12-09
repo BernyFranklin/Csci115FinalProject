@@ -28,13 +28,15 @@ int main() {
 
     // create DoublyOrderList
     DoublyOrderList doublyList;
-    // convert our sinlgly to the doubly
+    // convert our singly to the doubly
     doublyList.convertFromSingly(singlyList);
 
     // create SkipOrderList
     SkipOrderList skipList;
     // load skipList with the array
     skipList.loadFromArray(arrayList);
+    skipList.updatePriority("ORD50", 1);
+
 
     return 0;
 }

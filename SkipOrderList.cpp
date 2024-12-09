@@ -140,6 +140,36 @@ SkipOrderList::Node *SkipOrderList::searchByOrderId(const string &orderId) const
     return nullptr;                     // if not found return null
 }
 
+// update priority by orderId
+void SkipOrderList::updatePriority(const std::string &orderId, int newPriority) {
+    // validate range
+    if (newPriority < 1 || newPriority > 5) {
+        cerr << "Error: priority must be between 1 and 5." << endl;
+        return;
+    }
+
+    // traverse levels from top to bottom to find order
+    Node* current = head;
+    for (int i = currentLevel; i >= 0; i--) {
+        while (current->next[i] && current->next[i]->data.getId() < orderId) {
+            current = current->next[i];             // move forward at the current level
+        }
+    }
+
+    // move to the next node at the lowest level
+    current = current->next[0];
+
+    // check if node with given orderId exists
+    if (!current || current->data.getId() != orderId) {
+        cerr << "Error: Order with ID " << orderId << " not found." << endl;
+        return;
+    }
+
+    // update priority
+    current->data.setPriority(newPriority);
+    cout << "Priority of Order with ID " << orderId << " updated to " << newPriority << "." << endl;
+}
+
 // display the skip list
 void SkipOrderList::display() const {
     for (int i = currentLevel; i >= 0; i--){
