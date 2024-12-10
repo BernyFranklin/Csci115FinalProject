@@ -30,7 +30,8 @@ public:
     SkipOrderList(int maxLevel = 5);       // constructor with a default max level
     ~SkipOrderList();                   // destructor
 
-
+    // getter
+    Order getOrder(const string& orderId) const;                    // gets order object
     // functions being tested
     void addOrder(const Order& order);                              // addOrder an order into the list
     void removeOrder(const string &orderId);                        // delete an order by orderId

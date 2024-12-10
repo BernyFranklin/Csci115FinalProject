@@ -22,6 +22,29 @@ SkipOrderList::~SkipOrderList() {
     }
 }
 
+// getter
+Order SkipOrderList::getOrder(const std::string &orderId) const {
+    Node* current = head;
+
+    // traverse levels from the top to bottom
+    for (int i = currentLevel; i >= 0; i--) {
+        while (current->next[i] && current->next[i]->data.getId() < orderId) {
+            current = current->next[i];         // move forward at the current level
+        }
+    }
+
+    // move to the next node at level 0
+    current = current->next[0];
+
+    // check if the node exists and matches the orderId
+    if (current && current->data.getId() == orderId) {
+        return current->data;                   // return the found order
+    }
+
+    // not found
+    cerr << "Error: Order with ID " << orderId << " not found." << endl;
+    return Order("", -1, "");   // return default/invalid order
+}
 // functions
 // generate a random level for a new node
 int SkipOrderList::randomLevel() {

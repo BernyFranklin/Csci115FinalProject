@@ -36,6 +36,8 @@ int main() {
     // load skipList with the array
     skipList.loadFromArray(arrayList);
     skipList.updatePriority("ORD50", 1);
+    Order orderInquiry = skipList.getOrder("ORD50");
+    orderInquiry.displayOrder();
 
 
     return 0;
