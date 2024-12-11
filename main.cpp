@@ -18,7 +18,10 @@ int main() {
     ArrayOrderList arrayList;
     // load current values from text file
     arrayList.loadFromFile(orderFile);
+    arrayList.addOrder(Order("ORD51", 5, "X"));
+    arrayList.displayOrders();
 
+    /*
     // create the SinglyLinkedList
     SinglyOrderList singlyList;
     // iterate through array and fill the list
@@ -38,7 +41,7 @@ int main() {
     skipList.updatePriority("ORD50", 1);
     Order orderInquiry = skipList.getOrder("ORD50");
     orderInquiry.displayOrder();
-
+    */
 
     return 0;
 }

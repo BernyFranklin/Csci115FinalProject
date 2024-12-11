@@ -40,7 +40,16 @@ void ArrayOrderList::addOrder(const Order& order) {
     if (size >= capacity) {
         resize();                               // resize if the array is full
     }
+
+    for (int i = 0; i < size - 1; i++) {
+        if (order.getId() == orders[i].getId()) {
+            cerr << "Order with ID " << order.getId() << " already exists." << endl;
+        }
+    }
+    
     orders[size++] = order;                     // add order and increment size
+    cout << "Order with ID " << order.getId() << " added successfully." << endl;
+    order.displayOrder();
 }
 
 // removes order by orderId
