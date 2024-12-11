@@ -22,7 +22,7 @@ public:
     Order getOrder(int index) const;                                // gets order
 
     // functions being tested
-    void addOrder(const Order& order);                              // add order to list
+    bool addOrder(const Order& order);                              // add order to list
     void removeOrder(const string& orderId);                        // removes order by orderId
     int searchByOrderId(const string& orderId) const;               // linear searchByOrderId for orderId
     void updatePriority(const string& orderId, int newPriority);    // updates priority level for an orderId

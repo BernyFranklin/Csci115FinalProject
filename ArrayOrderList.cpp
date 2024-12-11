@@ -36,20 +36,19 @@ int ArrayOrderList::getSize() const {return size;}
 Order ArrayOrderList::getOrder(int index) const {return orders[index];}
 
 // adds order to the array, resizes if needed
-void ArrayOrderList::addOrder(const Order& order) {
+bool ArrayOrderList::addOrder(const Order& order) {
     if (size >= capacity) {
         resize();                               // resize if the array is full
     }
 
-    for (int i = 0; i < size - 1; i++) {
+    for (int i = 0; i < size; i++) {
         if (order.getId() == orders[i].getId()) {
-            cerr << "Order with ID " << order.getId() << " already exists." << endl;
+            return false;
         }
     }
-    
+
     orders[size++] = order;                     // add order and increment size
-    cout << "Order with ID " << order.getId() << " added successfully." << endl;
-    order.displayOrder();
+    return true;
 }
 
 // removes order by orderId
@@ -79,16 +78,19 @@ void ArrayOrderList::removeOrder(const std::string &orderId) {
     size--;
 
     // tell user
-    cout << "Order with ID " << orderId << " removed successfully" << endl;
+    cout << "\n\nOrder with ID " << orderId << " removed successfully" << endl;
 }
 
 // searchByOrderId for an order by orderId
 int ArrayOrderList::searchByOrderId(const std::string &orderId) const {
     for (int i = 0; i < size; i++) {
         if (orders[i].getId() == orderId) {
+            cout << "\n\nOrder with ID " << orderId << " found." << endl;
+            orders[i].displayOrder();
             return i;
         }
     }
+    cerr << "\n\nError: Order with ID " << orderId << " not found." << endl;
     return -1;
 }
 
@@ -106,12 +108,12 @@ void ArrayOrderList::updatePriority(const std::string &orderId, int newPriority)
 
     // not found
     if (searchIndex == -1) {
-        cerr << "Error: Order with ID " << orderId << " not found." << endl;
+        return;
     }
     else{
         // found, update priority
         orders[searchIndex].setPriority(newPriority);
-        cout << "Priority of Order with ID " << orderId << " updated to " << newPriority << "." << endl;
+        cout << "\n\nPriority of Order with ID " << orderId << " updated to " << newPriority << "." << endl;
     }
 }
 

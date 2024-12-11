@@ -18,17 +18,17 @@ int main() {
     ArrayOrderList arrayList;
     // load current values from text file
     arrayList.loadFromFile(orderFile);
-    arrayList.addOrder(Order("ORD51", 5, "X"));
-    arrayList.displayOrders();
 
-    /*
+
+
     // create the SinglyLinkedList
     SinglyOrderList singlyList;
     // iterate through array and fill the list
     for (int i = 0; i < arrayList.getSize(); i++) {
         singlyList.addOrder(arrayList.getOrder(i));
     }
-
+    
+    /*
     // create DoublyOrderList
     DoublyOrderList doublyList;
     // convert our singly to the doubly
