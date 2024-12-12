@@ -54,6 +54,6 @@ void OrderSorting::selectionSort(ArrayOrderList &list) {
     }
 
     // alert user
-    cout << "Orders sorted by priority in ascending order." << endl;
+    cout << "\n\nOrders sorted by priority in ascending order." << endl;
 }
 

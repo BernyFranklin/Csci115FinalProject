@@ -21,6 +21,8 @@ int main() {
     //arrayList.loadFromFile(orderFile);
     OrderSorting::generateOrders(100, arrayList);
     arrayList.displayOrders();
+    OrderSorting::selectionSort(arrayList);
+    arrayList.displayOrders();
     /*
     // create the SinglyLinkedList
     SinglyOrderList singlyList;
