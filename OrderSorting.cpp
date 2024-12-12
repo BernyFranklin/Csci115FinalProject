@@ -7,6 +7,7 @@
 
 using namespace std;
 
+string sortedString = "\n\nOrders sorted by priority in ascending order.\n";
 // generates N Order objects and stores them in an ArrayOrderList
 void OrderSorting::generateOrders(int n, ArrayOrderList& list) {
     srand(time(nullptr));       // seed the random number generator
@@ -54,6 +55,31 @@ void OrderSorting::selectionSort(ArrayOrderList &list) {
     }
 
     // alert user
-    cout << "\n\nOrders sorted by priority in ascending order." << endl;
+    cout << sortedString;
+}
+
+// performs bubble sort of ArrayOrderList and sorts by priority
+void OrderSorting::bubbleSort(ArrayOrderList &list) {
+    int n = list.getSize();
+
+    for (int i = 0; i < n; i++) {
+        bool swapped = false;       // used to terminate early
+        //perform single pass of the bubble sort
+        for (int j = 0; j < n - i - 1; j++) {
+            if (list.getOrder(j).getPriority() > list.getOrder(j + 1).getPriority()) {
+                //swap elements
+                Order temp = list.getOrder(j);
+                list.setOrder(j, list.getOrder(j+1));
+                list.setOrder(j + 1, temp);
+
+                swapped = true;
+            }
+        }
+        // if no swaps were made, the list is sorted
+        if (!swapped) break;
+    }
+
+    // alert user
+    cout << sortedString;
 }
 

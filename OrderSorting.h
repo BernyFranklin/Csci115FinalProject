@@ -8,6 +8,7 @@ public:
 
     static void generateOrders(int n, ArrayOrderList& list);    // generate N Order objects in an array
     static void selectionSort(ArrayOrderList& list);            // performs selection sort by priority
+    static void bubbleSort(ArrayOrderList& list);               // performs bubble sort by priority
 };
 
 #endif
