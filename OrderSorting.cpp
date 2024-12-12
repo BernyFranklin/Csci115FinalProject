@@ -7,7 +7,7 @@
 
 using namespace std;
 
-string sortedString = "\n\nOrders sorted by priority in ascending order.\n";
+string sortedString = "\n\nOrders sorted by priority in ascending order using ";
 // generates N Order objects and stores them in an ArrayOrderList
 void OrderSorting::generateOrders(int n, ArrayOrderList& list) {
     srand(time(nullptr));       // seed the random number generator
@@ -53,7 +53,7 @@ void OrderSorting::selectionSort(ArrayOrderList &list) {
     }
 
     // alert user
-    cout << sortedString;
+    cout << sortedString << "Selection Sort." << endl;
 }
 
 // performs bubble sort of ArrayOrderList and sorts by priority
@@ -75,9 +75,55 @@ void OrderSorting::bubbleSort(ArrayOrderList &list) {
     }
 
     // alert user
-    cout << sortedString;
+    cout << sortedString << "Bubble Sort." << endl;
 }
 
+// performs merge sort of ArrayOrderList and sorts by priority
+// helper functions + merge sort function
+void merge(ArrayOrderList& list, int left, int mid, int right) {
+    int n1 = mid - left + 1;            // size of left array
+    int n2 = right - mid;               // size of right array
+
+    // temp vectors to hold sub arrays
+    vector<Order> leftArray(n1);
+    vector<Order> rightArray(n2);
+
+    // copy data to temp vectors
+    for (int i = 0; i < n1; i++) leftArray[i] = list.getOrder(left+i);
+    for (int i = 0; i < n2; i++) rightArray[i] = list.getOrder(mid + 1 + i);
+
+    // merge the temp arrays back into the list
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        if (leftArray[i].getPriority() <= rightArray[j].getPriority()) {
+            list.setOrder(k++, leftArray[i++]);
+        }
+        else {
+            list.setOrder(k++, rightArray[j++]);
+        }
+    }
+    // copy remaining values from both temp arrays
+    while (i < n1) list.setOrder(k++, leftArray[i++]);
+    while (j < n2) list.setOrder(k++, rightArray[j++]);
+}
+void mergeSortHelper(ArrayOrderList& list, int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+
+        // recursively sort the first and second halves
+        mergeSortHelper(list, left, mid);
+        mergeSortHelper(list, mid + 1, right);
+
+        // merge sorted halves
+        merge(list, left, mid, right);
+    }
+}
+void  OrderSorting::mergeSort(ArrayOrderList &list) {
+    mergeSortHelper(list, 0, list.getSize() - 1);
+    cout << sortedString << "Merge Sort." << endl;
+}
+
+// we do a lot of swaps, figured i'd make the code cleaner
 void OrderSorting::swap(ArrayOrderList& list, int index1, int index2) {
     Order temp = list.getOrder(index1);
     list.setOrder(index1, list.getOrder(index2));
