@@ -48,9 +48,7 @@ void OrderSorting::selectionSort(ArrayOrderList &list) {
 
         // swap the current element with the smallest element found
         if (minIndex != i) {
-            Order temp = list.getOrder(i);                              // access array directly
-            list.setOrder(i, list.getOrder(minIndex));     // first swap
-            list.setOrder(minIndex, temp);                       // second swap
+            swap(list, i , minIndex);                       // second swap
         }
     }
 
@@ -68,10 +66,7 @@ void OrderSorting::bubbleSort(ArrayOrderList &list) {
         for (int j = 0; j < n - i - 1; j++) {
             if (list.getOrder(j).getPriority() > list.getOrder(j + 1).getPriority()) {
                 //swap elements
-                Order temp = list.getOrder(j);
-                list.setOrder(j, list.getOrder(j+1));
-                list.setOrder(j + 1, temp);
-
+                swap(list, j, j + 1);
                 swapped = true;
             }
         }
@@ -81,5 +76,11 @@ void OrderSorting::bubbleSort(ArrayOrderList &list) {
 
     // alert user
     cout << sortedString;
+}
+
+void OrderSorting::swap(ArrayOrderList& list, int index1, int index2) {
+    Order temp = list.getOrder(index1);
+    list.setOrder(index1, list.getOrder(index2));
+    list.setOrder(index2, temp);
 }
 

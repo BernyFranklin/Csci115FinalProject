@@ -21,7 +21,7 @@ int main() {
     //arrayList.loadFromFile(orderFile);
     OrderSorting::generateOrders(100, arrayList);
     arrayList.displayOrders();
-    OrderSorting::selectionSort(arrayList);
+    OrderSorting::bubbleSort(arrayList);
     arrayList.displayOrders();
     /*
     // create the SinglyLinkedList
