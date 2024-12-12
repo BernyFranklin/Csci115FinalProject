@@ -4,7 +4,7 @@
 #include "SinglyOrderList.h"
 
 class DoublyOrderList {
-private:
+public:
     struct Node {
         Order data;     // order object as data
         Node* next;     // pointer to next node
@@ -19,7 +19,6 @@ private:
     Node* tail;         // pointer to the tail of the list
     int size;           // number of nodes in the list
 
-public:
     DoublyOrderList();      // constructor
     ~DoublyOrderList();     // destructor
 

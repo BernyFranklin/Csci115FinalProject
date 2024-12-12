@@ -27,6 +27,10 @@ void SinglyOrderList::addOrder(const Order &order) {
         // traverse to the end
         Node* current = head;
         while (current->next) {
+            if (order.getId() == current->data.getId()) {
+                cerr << "\n\nError: Order with ID " << order.getId() << " already exists." << endl;
+                return;
+            }
             current = current->next;
         }
         current->next = newNode;
@@ -36,27 +40,26 @@ void SinglyOrderList::addOrder(const Order &order) {
 
 // remove order by orderId
 void SinglyOrderList::removeOrder(const std::string &orderId) {
-    string successString = "Order with ID " + orderId + " removed successfully.\n";
+    string successString = "\n\nOrder with ID " + orderId + " removed successfully.\n";
     // empty list case
     if (!head) {
         cerr << "Error: the list is empty." << endl;
         return;
     }
 
+    // use searchByOrderId
+    Node* targetNode = searchByOrderId(orderId);
+    // not found
+    if (!targetNode) {
+        cerr << "\n\nError: Order with ID " << orderId << " not found" << endl;
+        return;
+    }
     // remove the head case
     if (head->data.getId() == orderId) {
         Node* temp = head;
         head = head->next;
         delete temp;
         cout << successString;
-    }
-
-    // use searchByOrderId
-    Node* targetNode = searchByOrderId(orderId);
-
-    // not found
-    if (!targetNode) {
-        cerr << "Error: Order with ID " << orderId << " not found" << endl;
         return;
     }
 
@@ -79,7 +82,7 @@ void SinglyOrderList::removeOrder(const std::string &orderId) {
 void SinglyOrderList::updatePriority(const std::string &orderId, int newPriority) const {
     // validate priority range
     if (newPriority < 1 || newPriority > 5) {
-        cerr << "Error: priority must be between 1 and 5" << endl;
+        cerr << "\n\nError: priority must be between 1 and 5" << endl;
         return;
     }
 
@@ -87,13 +90,13 @@ void SinglyOrderList::updatePriority(const std::string &orderId, int newPriority
     Node* targetNode = searchByOrderId(orderId);
     // if not found
     if (!targetNode) {
-        cerr << "Error: Order with ID " << orderId << " not found." << endl;
+        cerr << "\n\nError: Order with ID " << orderId << " not found." << endl;
         return;
     }
 
     // update the priority
     targetNode->data.setPriority(newPriority);
-    cout << "Priority of Order with ID " << orderId << " updated to " << newPriority << "." << endl;
+    cout << "\n\nPriority of Order with ID " << orderId << " updated to " << newPriority << "." << endl;
 }
 
 // searchByOrderId for an order

@@ -116,7 +116,7 @@ void SkipOrderList::removeOrder(const string &orderId) {
 
     // check if the node to delete exists
     if (!current || current->data.getId() != orderId) {
-        cerr << "Order with ID " << orderId << " not found." << endl;
+        cerr << "\n\nOrder with ID " << orderId << " not found." << endl;
     }
 
     // update pointers to bypass the node being deleted
@@ -132,7 +132,7 @@ void SkipOrderList::removeOrder(const string &orderId) {
     }
 
     delete current;                                             // free memory
-    cout << "Order with ID " << orderId << " deleted successfully." << endl;
+    cout << "\n\nOrder with ID " << orderId << " deleted successfully." << endl;
 }
 
 // searchByOrderId by orderId
@@ -151,13 +151,12 @@ SkipOrderList::Node *SkipOrderList::searchByOrderId(const string &orderId) const
 
     // check if the orderId matches
     if (current && current->data.getId() == orderId) {
-        cout << "Order found: " << endl;
-        current->data.displayOrder();                  // return the found order
+        // return the found order
         return current;
     }
     else{
         // if not found, print error and return an empty order
-        cerr << "Order with ID " << orderId << " not found." << endl;
+        cerr << "Error: Order with ID " << orderId << " not found." << endl;
     }
 
     return nullptr;                     // if not found return null

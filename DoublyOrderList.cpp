@@ -19,20 +19,6 @@ DoublyOrderList::~DoublyOrderList() {
     }
 }
 
-// searchByOrderId for an orderId
-DoublyOrderList::Node* DoublyOrderList::searchByOrderId(const string &orderId) const {
-    Node* current = head;               // start at the head
-    while (current) {
-        if (current->data.getId() == orderId) {
-            return current;             // return the pointer if found
-        }
-        current = current->next;
-    }
-
-    // not found
-    cout << "Order with ID " << orderId << " not found." << endl;
-    return nullptr;                     // not found
-}
 
 // add order to end of list
 void DoublyOrderList::addOrder(const Order &order) {
@@ -41,6 +27,7 @@ void DoublyOrderList::addOrder(const Order &order) {
     if(!head) {
         head = tail = newNode;          // first node
     }
+
     else {
         tail->next = newNode;           // link new node to tail
         newNode->prev = tail;           // new node points to previous
@@ -76,7 +63,23 @@ void DoublyOrderList::removeOrder(const std::string &orderId) {
     }
 
     delete targetNode;          // free memory
+    cout << "\n\nOrder with ID " << orderId << " deleted successfully." << endl;
     size--;                     // reduce size
+}
+
+// searchByOrderId for an orderId
+DoublyOrderList::Node* DoublyOrderList::searchByOrderId(const string &orderId) const {
+    Node* current = head;               // start at the head
+    while (current) {
+        if (current->data.getId() == orderId) {
+            return current;             // return the pointer if found
+        }
+        current = current->next;
+    }
+
+    // not found
+    cerr << "\n\nError: Order with ID " << orderId << " not found." << endl;
+    return nullptr;                     // not found
 }
 
 // update priority levels
@@ -95,7 +98,7 @@ void DoublyOrderList::updatePriority(const std::string &orderId, int newPriority
 
     // if found
     targetNode->data.setPriority(newPriority);
-    cout << "Priority of " << orderId << " updated to level " << newPriority << endl;
+    cout << "\n\nPriority of " << orderId << " updated to level " << newPriority << endl;
 }
 
 // display orders --This Way-->

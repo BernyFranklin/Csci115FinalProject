@@ -18,17 +18,14 @@ int main() {
     ArrayOrderList arrayList;
     // load current values from text file
     arrayList.loadFromFile(orderFile);
-
-
-
+    
     // create the SinglyLinkedList
     SinglyOrderList singlyList;
     // iterate through array and fill the list
     for (int i = 0; i < arrayList.getSize(); i++) {
         singlyList.addOrder(arrayList.getOrder(i));
     }
-    
-    /*
+
     // create DoublyOrderList
     DoublyOrderList doublyList;
     // convert our singly to the doubly
@@ -38,10 +35,6 @@ int main() {
     SkipOrderList skipList;
     // load skipList with the array
     skipList.loadFromArray(arrayList);
-    skipList.updatePriority("ORD50", 1);
-    Order orderInquiry = skipList.getOrder("ORD50");
-    orderInquiry.displayOrder();
-    */
 
     return 0;
 }

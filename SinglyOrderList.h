@@ -4,7 +4,7 @@
 
 class SinglyOrderList {
     friend class DoublyOrderList;
-private:
+public:
     struct Node {
         Order data;         // order object as node data for simplicity
         Node* next;         // pointer to the next node
@@ -17,7 +17,6 @@ private:
     Node* head;             // pointer to the head of the list
     int size;               // number of nodes on the list
 
-public:
     SinglyOrderList();      // constructor
     ~SinglyOrderList();     // destructor
 

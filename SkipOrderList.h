@@ -11,7 +11,7 @@
 using namespace std;
 
 class SkipOrderList {
-private:
+public:
     struct Node {
         Order data;             // order object will be data
         vector<Node*> next;     //Pointers to the next nodes at various levels
@@ -26,7 +26,6 @@ private:
 
     int randomLevel();          // generate a random level for a node
 
-public:
     SkipOrderList(int maxLevel = 5);       // constructor with a default max level
     ~SkipOrderList();                   // destructor
 
