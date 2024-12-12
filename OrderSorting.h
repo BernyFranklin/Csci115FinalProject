@@ -5,8 +5,9 @@
 
 class OrderSorting {
 public:
-    // generate N order objects and store them in an ArrayOrderList
-    static void generateOrders(int n, ArrayOrderList& list);
+
+    static void generateOrders(int n, ArrayOrderList& list);    // generate N Order objects in an array
+    static void selectionSort(ArrayOrderList& list);            // performs selection sort by priority
 };
 
 #endif

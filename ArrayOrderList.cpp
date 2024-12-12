@@ -35,6 +35,15 @@ int ArrayOrderList::getSize() const {return size;}
 // retrieves order by index and returns order object
 Order ArrayOrderList::getOrder(int index) const {return orders[index];}
 
+// sets an index to a specific order
+void ArrayOrderList::setOrder(int index, const Order &order) {
+    if (index < 0 || index >= size) {
+        cerr << "\n\nError: index is out of bounds." << endl;
+        return;
+    }
+    orders[index] = order;
+}
+
 // adds order to the array, resizes if needed
 bool ArrayOrderList::addOrder(const Order& order) {
     if (size >= capacity) {

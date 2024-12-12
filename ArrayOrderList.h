@@ -8,10 +8,11 @@ using namespace std;
 const int DEFAULT_SIZE = 50;
 class ArrayOrderList {
 private:
-    Order* orders;      // pointer to the dynamic array of orders
+    // pointer to the dynamic array of orders
     int size;           // current number of orders
     int capacity;       // maximum capacity of the array
     void resize();      // resize the array when capacity is exceeded
+    Order* orders;
 
 public:
     explicit ArrayOrderList(int initialCapacity = DEFAULT_SIZE);    // constructor with default
@@ -20,6 +21,9 @@ public:
     // getters
     int getSize() const;                                            // gets size
     Order getOrder(int index) const;                                // gets order
+
+    // setters
+    void setOrder(int index, const Order& order);                   // used for moving order around
 
     // functions being tested
     bool addOrder(const Order& order);                              // add order to list
@@ -31,6 +35,5 @@ public:
     void loadFromFile(const string& filename);                      // load orders
     void displayOrders() const;                                     // display all orders
     void displaySingleOrder(int index) const;                       // display single order
-
 };
 #endif
