@@ -5,6 +5,7 @@
 #include "SinglyOrderList.h"
 #include "DoublyOrderList.h"
 #include "SkipOrderList.h"
+#include "OrderSorting.h"
 
 using namespace std;
 
@@ -16,9 +17,11 @@ int main() {
 
     // create the array
     ArrayOrderList arrayList;
-    // load current values from text file
-    arrayList.loadFromFile(orderFile);
-    
+    // load values
+    //arrayList.loadFromFile(orderFile);
+    OrderSorting::generateOrders(100, arrayList);
+    arrayList.displayOrders();
+    /*
     // create the SinglyLinkedList
     SinglyOrderList singlyList;
     // iterate through array and fill the list
@@ -35,6 +38,6 @@ int main() {
     SkipOrderList skipList;
     // load skipList with the array
     skipList.loadFromArray(arrayList);
-
+    */
     return 0;
 }
