@@ -14,8 +14,11 @@ private:
     };
 
     Node* root;
-    Node* insertNode(Node* node, Order& order);
-    void destroyTree(Node* node);
+    Node* insertNode(Node* node, Order& order);                 // inserts node...
+    Node* deleteNode(Node* node, const string& orderId);        // deletes node, pretty self-explanatory
+    Node* findMin(Node* node);                                  // used to find min value in right tree
+    Node* searchNode(Node* node, const string& orderId) const;  // used to find a node
+    void destroyTree(Node* node);                               // goodbye tree
 
 public:
     // constructor
@@ -23,7 +26,9 @@ public:
     // destructor
     ~BstOrderList();
     // required functions
-    void addOrder(Order& order);        // adds order object to the tree
+    void addOrder(Order& order);                            // adds order object to the tree
+    void removeOrder(string& orderId);                      // removes order object from the tree
+    Order* searchByOrderId(const string& orderId) const;    // searches for an order by orderId
 };
 
 #endif

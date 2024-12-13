@@ -27,6 +27,18 @@ void BstOrderList::addOrder(Order &order) {
     root = insertNode(root, order);
 }
 
+// removes order object from the tree
+void BstOrderList::removeOrder(std::string &orderId) {
+    root = deleteNode(root, orderId);
+}
+
+// searches for an order by ordrId
+Order* BstOrderList::searchByOrderId(const std::string &orderId) const {
+    Node* result = searchNode(root, orderId);
+    // return pointer to order or null
+    return result ? &(result->data) : nullptr;
+}
+
 // helper functions
 // inserts a node into the tree
 BstOrderList::Node* BstOrderList::insertNode(BstOrderList::Node *node, Order &order) {
@@ -48,3 +60,26 @@ BstOrderList::Node* BstOrderList::insertNode(BstOrderList::Node *node, Order &or
     }
     return node;
 }
+// deletes node from tree
+BstOrderList::Node* BstOrderList::deleteNode(BstOrderList::Node *node, const std::string &orderId) {
+    if (node == nullptr) {
+        cerr << "\n\nOrder with ID " << orderId << " not found." << endl;
+        return nullptr;
+    }
+
+    // traverse the tree to find
+}
+// searches the nodes recursively
+BstOrderList::Node* BstOrderList::searchNode(BstOrderList::Node *node, const std::string &orderId) const {
+    if (node == nullptr || node->data.getId() == orderId) {
+        return node;                                        // found
+    }
+
+    if (orderId < node->data.getId()) {
+        return searchNode(node->left, orderId);       // search left
+    }
+    else {
+        return searchNode(node->right, orderId);      // search right
+    }
+}
+// finds the minimum
