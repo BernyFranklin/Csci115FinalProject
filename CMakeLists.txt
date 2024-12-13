@@ -3,6 +3,8 @@ project(Csci115FinalProject)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_OSX_SYSROOT "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk")
+find_package(Python3 REQUIRED)
+message(STATUS "Python3 executable: ${Python3_EXECUTABLE}")
 
 
 add_executable(Csci115FinalProject

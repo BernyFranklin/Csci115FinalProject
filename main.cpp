@@ -19,12 +19,11 @@ int main() {
     //ArrayOrderList arrayList;
     // load values
     //arrayList.loadFromFile(orderFile);
-    for (int i = 0; i < 10; i++) {
-        cout << "\nIteration " << i + 1;
-        ArrayOrderList arrayList;
-        OrderSorting::generateOrders(10'000, arrayList);
-        OrderSorting::timedSort(OrderSorting::quickSort, arrayList);
-    }
+
+    ArrayOrderList arrayList;
+    OrderSorting::generateOrders(1000, arrayList);
+    OrderSorting::timedSort(OrderSorting::mergeSort, arrayList);
+
 
     /*
     // create the SinglyLinkedList

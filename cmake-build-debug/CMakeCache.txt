@@ -133,11 +133,11 @@ CMAKE_OSX_ARCHITECTURES:STRING=
 
 //Minimum OS X version to target for deployment (at runtime); newer
 // APIs weak linked. Set to empty string for default value.
-CMAKE_OSX_DEPLOYMENT_TARGET:STRING=
+CMAKE_OSX_DEPLOYMENT_TARGET:STRING=15.1
 
 //The product will be built against the headers and libraries located
 // inside the indicated SDK.
-CMAKE_OSX_SYSROOT:PATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk
+CMAKE_OSX_SYSROOT:PATH=/Applications/Xcode.app/contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk
 
 //Value Computed by CMake
 CMAKE_PROJECT_DESCRIPTION:STATIC=
@@ -221,6 +221,12 @@ Csci115FinalProject_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 Csci115FinalProject_SOURCE_DIR:STATIC=/Users/frankbernal/CLionProjects/Csci115FinalProject
+
+//No help, variable specified on the command line.
+Python3_EXECUTABLE:UNINITIALIZED=/Users/frankbernal/CLionProjects/Csci115FinalProject/venv/bin/python
+
+//No help, variable specified on the command line.
+Python_EXECUTABLE:UNINITIALIZED=/Users/frankbernal/CLionProjects/Csci115FinalProject/venv/bin/python
 
 
 ########################
@@ -360,4 +366,16 @@ CMAKE_TAPI-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding Python3
+FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[/Users/frankbernal/CLionProjects/Csci115FinalProject/venv/bin/python][cfound components: Interpreter ][v3.12.6()]
+//Compiler reason failure
+_Python3_Compiler_REASON_FAILURE:INTERNAL=
+//Development reason failure
+_Python3_Development_REASON_FAILURE:INTERNAL=
+_Python3_EXECUTABLE:INTERNAL=/Users/frankbernal/CLionProjects/Csci115FinalProject/venv/bin/python
+//Python3 Properties
+_Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;12;6;64;32;;cpython-312-darwin;abi3;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12;/Users/frankbernal/CLionProjects/Csci115FinalProject/venv/lib/python3.12;/Users/frankbernal/CLionProjects/Csci115FinalProject/venv/lib/python3.12/site-packages;/Users/frankbernal/CLionProjects/Csci115FinalProject/venv/lib/python3.12/site-packages
+_Python3_INTERPRETER_SIGNATURE:INTERNAL=747d1d9dc4f7fc5b597801aa49e8290f
+//NumPy reason failure
+_Python3_NumPy_REASON_FAILURE:INTERNAL=
 
