@@ -3,11 +3,14 @@
 #include <ctime>        // for seeding rand
 #include <sstream>      // for generating orderId in hex
 #include <iomanip>      // for formatting
-#include <iostream>     // for stuff
+#include <iostream>     // for output
+#include <chrono>       // for tracking time
+#include <fstream>      // for accessing files
 
 using namespace std;
 
 string sortedString = "\n\nOrders sorted by priority in ascending order using ";
+
 // generates N Order objects and stores them in an ArrayOrderList
 void OrderSorting::generateOrders(int n, ArrayOrderList& list) {
     srand(time(nullptr));       // seed the random number generator
@@ -33,6 +36,46 @@ void OrderSorting::generateOrders(int n, ArrayOrderList& list) {
     }
 }
 
+// we do a lot of swaps, figured i'd make the code cleaner
+void OrderSorting::swap(ArrayOrderList& list, int index1, int index2) {
+    Order temp = list.getOrder(index1);
+    list.setOrder(index1, list.getOrder(index2));
+    list.setOrder(index2, temp);
+}
+
+// used to time our sorting functions
+void OrderSorting::timedSort(const function<void(ArrayOrderList &)> &sortingFunction, ArrayOrderList &list) {
+    //start timing
+    auto start = chrono::high_resolution_clock::now();
+
+    // execute sorting function
+    sortingFunction(list);
+
+    // STOP THE CLOCK
+    auto end = chrono::high_resolution_clock::now();
+
+    // calculate the duration
+    auto duration = chrono::duration_cast<chrono::microseconds>(end - start).count();
+
+    // display
+    cout << "Sorting completed in " << duration << " microseconds." << endl;
+}
+
+// used for visualizing our sorting
+void logIntermediateState(ArrayOrderList& list, const string& filename) {
+    ofstream file(filename, ios::app);          // open file in append mode
+    // file error
+    if (!file.is_open()) {
+        cerr << "\n\nError opening file for logging." << endl;
+        return;
+    }
+    for (int i = 0; i < list.getSize(); i++) {
+        file << list.getOrder(i).getPriority();
+        if (i != list.getSize() - 1) file << ",";
+    }
+    file << "\n";
+    file.close();
+}
 // performs selection sort of ArrayOrderList and sorts by priority
 void OrderSorting::selectionSort(ArrayOrderList &list) {
     int n = list.getSize();     // gets number of elements in array
@@ -79,7 +122,7 @@ void OrderSorting::bubbleSort(ArrayOrderList &list) {
 }
 
 // performs merge sort of ArrayOrderList and sorts by priority
-// helper functions + merge sort function
+// uses 2 helper functions and the main mergeSort function
 void merge(ArrayOrderList& list, int left, int mid, int right) {
     int n1 = mid - left + 1;            // size of left array
     int n2 = right - mid;               // size of right array
@@ -105,6 +148,7 @@ void merge(ArrayOrderList& list, int left, int mid, int right) {
     // copy remaining values from both temp arrays
     while (i < n1) list.setOrder(k++, leftArray[i++]);
     while (j < n2) list.setOrder(k++, rightArray[j++]);
+    logIntermediateState(list, "sorting_steps.txt");
 }
 void mergeSortHelper(ArrayOrderList& list, int left, int right) {
     if (left < right) {
@@ -118,15 +162,42 @@ void mergeSortHelper(ArrayOrderList& list, int left, int right) {
         merge(list, left, mid, right);
     }
 }
-void  OrderSorting::mergeSort(ArrayOrderList &list) {
+void OrderSorting::mergeSort(ArrayOrderList &list) {
     mergeSortHelper(list, 0, list.getSize() - 1);
     cout << sortedString << "Merge Sort." << endl;
 }
 
-// we do a lot of swaps, figured i'd make the code cleaner
-void OrderSorting::swap(ArrayOrderList& list, int index1, int index2) {
-    Order temp = list.getOrder(index1);
-    list.setOrder(index1, list.getOrder(index2));
-    list.setOrder(index2, temp);
+// performs quick sort of ArrayOrderList and sorts by priority
+// uses 2 helper functions and the main quickSort function
+int partition(ArrayOrderList& list, int low, int high) {
+    Order pivot = list.getOrder(high);          // using last element as pivot
+    int i = low - 1;                                  // index of smaller element
+
+    for (int j = low; j < high; j++) {
+        if (list.getOrder(j).getPriority() <= pivot.getPriority()) {
+            i++;
+            OrderSorting::swap(list, i, j);
+        }
+    }
+
+    // swap the pivot element with the element at i + 1;
+    OrderSorting::swap(list, i + 1, high);
+    return i + 1;
 }
+void quickSortHelper(ArrayOrderList& list, int low, int high) {
+    if (low < high) {
+        //partition index
+        int pi = partition(list, low, high);        // partition the array
+
+        // recursively sort elements before and after the parititon
+        quickSortHelper(list, low, pi - 1);
+        quickSortHelper(list, pi + 1, high);
+    }
+}
+void OrderSorting::quickSort(ArrayOrderList& list) {
+    quickSortHelper(list, 0, list.getSize() - 1);
+    cout << sortedString << "Quick Sort." << endl;
+}
+
+
 

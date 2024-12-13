@@ -16,13 +16,16 @@ int main() {
     string orderFile = "/Users/frankbernal/CLionProjects/Csci115FinalProject/sampleOrders.txt";
 
     // create the array
-    ArrayOrderList arrayList;
+    //ArrayOrderList arrayList;
     // load values
     //arrayList.loadFromFile(orderFile);
-    OrderSorting::generateOrders(100, arrayList);
-    arrayList.displayOrders();
-    OrderSorting::bubbleSort(arrayList);
-    arrayList.displayOrders();
+    for (int i = 0; i < 10; i++) {
+        cout << "\nIteration " << i + 1;
+        ArrayOrderList arrayList;
+        OrderSorting::generateOrders(10'000, arrayList);
+        OrderSorting::timedSort(OrderSorting::quickSort, arrayList);
+    }
+
     /*
     // create the SinglyLinkedList
     SinglyOrderList singlyList;

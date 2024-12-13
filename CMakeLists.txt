@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.28)
 project(Csci115FinalProject)
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_OSX_SYSROOT "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk")
+
 
 add_executable(Csci115FinalProject
         main.cpp

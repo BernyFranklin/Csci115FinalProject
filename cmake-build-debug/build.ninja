@@ -51,43 +51,43 @@ build cmake_object_order_depends_target_Csci115FinalProject: phony || CMakeFiles
 
 build CMakeFiles/Csci115FinalProject.dir/main.cpp.o: CXX_COMPILER__Csci115FinalProject_unscanned_Debug /Users/frankbernal/CLionProjects/Csci115FinalProject/main.cpp || cmake_object_order_depends_target_Csci115FinalProject
   DEP_FILE = CMakeFiles/Csci115FinalProject.dir/main.cpp.o.d
-  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk -fcolor-diagnostics
+  FLAGS = -g -std=gnu++14 -arch arm64 -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/Csci115FinalProject.dir
   OBJECT_FILE_DIR = CMakeFiles/Csci115FinalProject.dir
 
 build CMakeFiles/Csci115FinalProject.dir/Orders.cpp.o: CXX_COMPILER__Csci115FinalProject_unscanned_Debug /Users/frankbernal/CLionProjects/Csci115FinalProject/Orders.cpp || cmake_object_order_depends_target_Csci115FinalProject
   DEP_FILE = CMakeFiles/Csci115FinalProject.dir/Orders.cpp.o.d
-  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk -fcolor-diagnostics
+  FLAGS = -g -std=gnu++14 -arch arm64 -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/Csci115FinalProject.dir
   OBJECT_FILE_DIR = CMakeFiles/Csci115FinalProject.dir
 
 build CMakeFiles/Csci115FinalProject.dir/ArrayOrderList.cpp.o: CXX_COMPILER__Csci115FinalProject_unscanned_Debug /Users/frankbernal/CLionProjects/Csci115FinalProject/ArrayOrderList.cpp || cmake_object_order_depends_target_Csci115FinalProject
   DEP_FILE = CMakeFiles/Csci115FinalProject.dir/ArrayOrderList.cpp.o.d
-  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk -fcolor-diagnostics
+  FLAGS = -g -std=gnu++14 -arch arm64 -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/Csci115FinalProject.dir
   OBJECT_FILE_DIR = CMakeFiles/Csci115FinalProject.dir
 
 build CMakeFiles/Csci115FinalProject.dir/SinglyOrderList.cpp.o: CXX_COMPILER__Csci115FinalProject_unscanned_Debug /Users/frankbernal/CLionProjects/Csci115FinalProject/SinglyOrderList.cpp || cmake_object_order_depends_target_Csci115FinalProject
   DEP_FILE = CMakeFiles/Csci115FinalProject.dir/SinglyOrderList.cpp.o.d
-  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk -fcolor-diagnostics
+  FLAGS = -g -std=gnu++14 -arch arm64 -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/Csci115FinalProject.dir
   OBJECT_FILE_DIR = CMakeFiles/Csci115FinalProject.dir
 
 build CMakeFiles/Csci115FinalProject.dir/DoublyOrderList.cpp.o: CXX_COMPILER__Csci115FinalProject_unscanned_Debug /Users/frankbernal/CLionProjects/Csci115FinalProject/DoublyOrderList.cpp || cmake_object_order_depends_target_Csci115FinalProject
   DEP_FILE = CMakeFiles/Csci115FinalProject.dir/DoublyOrderList.cpp.o.d
-  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk -fcolor-diagnostics
+  FLAGS = -g -std=gnu++14 -arch arm64 -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/Csci115FinalProject.dir
   OBJECT_FILE_DIR = CMakeFiles/Csci115FinalProject.dir
 
 build CMakeFiles/Csci115FinalProject.dir/SkipOrderList.cpp.o: CXX_COMPILER__Csci115FinalProject_unscanned_Debug /Users/frankbernal/CLionProjects/Csci115FinalProject/SkipOrderList.cpp || cmake_object_order_depends_target_Csci115FinalProject
   DEP_FILE = CMakeFiles/Csci115FinalProject.dir/SkipOrderList.cpp.o.d
-  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk -fcolor-diagnostics
+  FLAGS = -g -std=gnu++14 -arch arm64 -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/Csci115FinalProject.dir
   OBJECT_FILE_DIR = CMakeFiles/Csci115FinalProject.dir
 
 build CMakeFiles/Csci115FinalProject.dir/OrderSorting.cpp.o: CXX_COMPILER__Csci115FinalProject_unscanned_Debug /Users/frankbernal/CLionProjects/Csci115FinalProject/OrderSorting.cpp || cmake_object_order_depends_target_Csci115FinalProject
   DEP_FILE = CMakeFiles/Csci115FinalProject.dir/OrderSorting.cpp.o.d
-  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk -fcolor-diagnostics
+  FLAGS = -g -std=gnu++14 -arch arm64 -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/Csci115FinalProject.dir
   OBJECT_FILE_DIR = CMakeFiles/Csci115FinalProject.dir
 
@@ -100,7 +100,7 @@ build CMakeFiles/Csci115FinalProject.dir/OrderSorting.cpp.o: CXX_COMPILER__Csci1
 # Link the executable Csci115FinalProject
 
 build Csci115FinalProject: CXX_EXECUTABLE_LINKER__Csci115FinalProject_Debug CMakeFiles/Csci115FinalProject.dir/main.cpp.o CMakeFiles/Csci115FinalProject.dir/Orders.cpp.o CMakeFiles/Csci115FinalProject.dir/ArrayOrderList.cpp.o CMakeFiles/Csci115FinalProject.dir/SinglyOrderList.cpp.o CMakeFiles/Csci115FinalProject.dir/DoublyOrderList.cpp.o CMakeFiles/Csci115FinalProject.dir/SkipOrderList.cpp.o CMakeFiles/Csci115FinalProject.dir/OrderSorting.cpp.o
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk
+  FLAGS = -g -arch arm64
   OBJECT_DIR = CMakeFiles/Csci115FinalProject.dir
   POST_BUILD = :
   PRE_LINK = :
