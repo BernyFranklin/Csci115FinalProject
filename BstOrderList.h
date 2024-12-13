@@ -14,12 +14,16 @@ private:
     };
 
     Node* root;
-
+    Node* insertNode(Node* node, Order& order);
     void destroyTree(Node* node);
 
 public:
+    // constructor
     BstOrderList();
+    // destructor
     ~BstOrderList();
+    // required functions
+    void addOrder(Order& order);        // adds order object to the tree
 };
 
 #endif
