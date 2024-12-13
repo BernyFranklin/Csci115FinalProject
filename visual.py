@@ -20,7 +20,7 @@ def visualize_sorting(steps):
         fig, update, frames=steps, repeat=False, interval=300, blit=False
     )
 
-    ani.save("merge_sort_visualization.mp4", writer="ffmpeg", fps=120)
+    ani.save("merge_sort_visualization.gif", writer="ffmpeg", fps=60)
 
     plt.show()
 
