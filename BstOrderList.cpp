@@ -29,6 +29,13 @@ void BstOrderList::addOrder(Order &order) {
 
 // removes order object from the tree
 void BstOrderList::removeOrder(std::string &orderId) {
+    Order* foundOrder = searchByOrderId(orderId);
+    // if not found
+    if (!foundOrder) {
+        cerr << "\n\nOrder with ID " << orderId << " not found." << endl;
+        return;
+    }
+
     root = deleteNode(root, orderId);
 }
 
@@ -67,7 +74,39 @@ BstOrderList::Node* BstOrderList::deleteNode(BstOrderList::Node *node, const std
         return nullptr;
     }
 
-    // traverse the tree to find
+    // traverse the tree to find the node to delete
+    if (orderId < node->data.getId()) {
+        node->left = deleteNode(node->left, orderId);       // go left
+    }
+    else if (orderId > node->data.getId()) {
+        node->right = deleteNode(node->right, orderId);     // go right
+    }
+    else {
+        if (node->left == nullptr && node->right == nullptr) {    // found, delete
+            // case 1: leaf node
+            delete node;
+            return nullptr;
+        }
+        else if (node->left == nullptr){
+            // case 2: one child (right)
+            Node* temp = node->right;
+            delete node;
+            return temp;
+        }
+        else if (node->right == nullptr) {
+            // case 3: one child (left)
+            Node* temp = node->left;
+            delete node;
+            return temp;
+        }
+        else {
+            // case 4: TWO children
+            Node* temp = findMin(node->right);                                  // find the smallest node in the right subtree
+            node->data = temp->data;                                                  // replace current data with successor's data
+            node->right = deleteNode(node->right, temp->data.getId());  // remove the successor
+        }
+    }
+    return node;
 }
 // searches the nodes recursively
 BstOrderList::Node* BstOrderList::searchNode(BstOrderList::Node *node, const std::string &orderId) const {
@@ -83,3 +122,15 @@ BstOrderList::Node* BstOrderList::searchNode(BstOrderList::Node *node, const std
     }
 }
 // finds the minimum
+BstOrderList::Node* BstOrderList::findMin(BstOrderList::Node *node) const{
+    if (node == nullptr) return nullptr;
+
+    while (node->left != nullptr) {
+        node = node->left;
+    }
+    return node;
+}
+Order* BstOrderList::findMin() const {
+    Node* minNode = findMin(root);
+    return minNode ? &(minNode->data) : nullptr;
+}
