@@ -1,5 +1,7 @@
 #include "BstOrderList.h"
 #include <iostream>
+#include <fstream>
+#include <sstream>
 using namespace std;
 // constructor
 BstOrderList::BstOrderList() : root(nullptr){}
@@ -44,6 +46,11 @@ Order* BstOrderList::searchByOrderId(const std::string &orderId) const {
     Node* result = searchNode(root, orderId);
     // return pointer to order or null
     return result ? &(result->data) : nullptr;
+}
+
+// traversal and print function
+void BstOrderList::traverseInOrder() const {
+    traverseInOrder(root);              // call the helper
 }
 
 // helper functions
@@ -133,4 +140,32 @@ BstOrderList::Node* BstOrderList::findMin(BstOrderList::Node *node) const{
 Order* BstOrderList::findMin() const {
     Node* minNode = findMin(root);
     return minNode ? &(minNode->data) : nullptr;
+}
+// traversal helper
+void BstOrderList::traverseInOrder(BstOrderList::Node *node) const {
+    if (node == nullptr) return;            // empty subtree
+    traverseInOrder(node->left);      // go left
+    node->data.displayOrder();              // print to console
+    traverseInOrder(node->right);     // go right
+}
+// fill the BST from our txt file
+void fillBstFromFile(BstOrderList& bst, const string& filename) {
+    ifstream file(filename);
+    if (!file.is_open()) {
+        cerr << "\n\nError: could not open file." << endl;
+        return;
+    }
+
+    string line;
+    while (getline(file, line)) {
+        istringstream ss(line);
+        string id, destination;
+        int priority;
+
+        if (getline(ss, id, ',') && ss >> priority && ss.ignore() && getline(ss, destination)) {
+            Order order(id, priority, destination);
+            bst.addOrder(order);
+        }
+    }
+    file.close();
 }

@@ -17,7 +17,8 @@ private:
     Node* insertNode(Node* node, Order& order);                 // inserts node...
     Node* deleteNode(Node* node, const string& orderId);        // deletes node, pretty self-explanatory
     Node* searchNode(Node* node, const string& orderId) const;  // used to find a node
-    Node* findMin(Node* node) const;                              // used to find min value in right tree
+    Node* findMin(Node* node) const;                            // used to find min value in right tree
+    void traverseInOrder(Node* node) const;                     // traverse
     void destroyTree(Node* node);                               // goodbye tree
 
 public:
@@ -29,6 +30,7 @@ public:
     void addOrder(Order& order);                            // adds order object to the tree
     void removeOrder(string& orderId);                      // removes order object from the tree
     Order* searchByOrderId(const string& orderId) const;    // searches for an order by orderId
+    void traverseInOrder() const;                           // traverses and prints list of orders
 
     // helpers
     Order* findMin() const;                                 // used to find min value of tree
