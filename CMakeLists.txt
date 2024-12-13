@@ -20,4 +20,6 @@ add_executable(Csci115FinalProject
         SkipOrderList.h
         SkipOrderList.cpp
         OrderSorting.cpp
-        OrderSorting.h)
+        OrderSorting.h
+        BstOrderList.h
+        BstOrderList.cpp)

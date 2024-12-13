@@ -76,6 +76,7 @@ void logIntermediateState(ArrayOrderList& list, const string& filename) {
     file << "\n";
     file.close();
 }
+
 // performs selection sort of ArrayOrderList and sorts by priority
 void OrderSorting::selectionSort(ArrayOrderList &list) {
     int n = list.getSize();     // gets number of elements in array

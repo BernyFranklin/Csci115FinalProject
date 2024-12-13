@@ -3,11 +3,7 @@
 4	629	1734050711697173053	CMakeFiles/Csci115FinalProject.dir/Orders.cpp.o	230f63292c3f50c8
 4	708	1734050711697312338	CMakeFiles/Csci115FinalProject.dir/ArrayOrderList.cpp.o	22d790c820c1b31d
 4	697	1734050711697442249	CMakeFiles/Csci115FinalProject.dir/SinglyOrderList.cpp.o	aeccd7338ae01fb4
-7	543	1734053780053028114	CMakeFiles/Csci115FinalProject.dir/main.cpp.o	ad71ea49027f3239
-4	718	1734050711697574452	CMakeFiles/Csci115FinalProject.dir/DoublyOrderList.cpp.o	184477c238c579c3
-543	655	1734053780589236575	Csci115FinalProject	53a3e0605b2457b6
-631	1052	1734050712324415925	CMakeFiles/Csci115FinalProject.dir/OrderSorting.cpp.o	6209d3d8c023f9f4
-4	375	1734055870137825815	CMakeFiles/Csci115FinalProject.dir/main.cpp.o	ad71ea49027f3239
-375	443	1734055870508739140	Csci115FinalProject	53a3e0605b2457b6
 4	352	1734056165948761509	CMakeFiles/Csci115FinalProject.dir/main.cpp.o	ad71ea49027f3239
+4	718	1734050711697574452	CMakeFiles/Csci115FinalProject.dir/DoublyOrderList.cpp.o	184477c238c579c3
 352	398	1734056166296230228	Csci115FinalProject	53a3e0605b2457b6
+631	1052	1734050712324415925	CMakeFiles/Csci115FinalProject.dir/OrderSorting.cpp.o	6209d3d8c023f9f4
