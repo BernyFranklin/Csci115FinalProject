@@ -11,7 +11,22 @@
 
 using namespace std;
 
+void testBinarySearch(BstOrderList& bst, string& targetId) {
+    auto startTime = chrono::high_resolution_clock::now();
+    bst.removeOrder(targetId);
+    auto endTime = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::nanoseconds>(endTime - startTime).count();
+    cout << "BST deleted order with ID " << targetId << " in " << duration << " nanoseconds." << endl;
 
+}
+void testAvlSearch(AvlOrderList& avl, string& targetId) {
+    auto startTime = chrono::high_resolution_clock::now();
+    avl.removeOrder(targetId);
+    auto endTime = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::nanoseconds>(endTime - startTime).count();
+    cout << "AVL deleted order with ID " << targetId << " in " << duration << " nanoseconds." << endl;
+
+}
 int main() {
     // file contains the original sample input of 50 orders
     // replace this string to match where the folder is on YOUR machine
@@ -47,29 +62,17 @@ int main() {
     */
 
     BstOrderList bst;
-    auto startBst = chrono::high_resolution_clock::now();
     bst.loadFromArrayOrderList(arrayList);
-    auto endBst = chrono::high_resolution_clock::now();
-    auto durationBst = chrono::duration_cast<chrono::microseconds>(endBst-startBst).count();
     AvlOrderList avl;
-    auto startAvl = chrono::high_resolution_clock::now();
     avl.convertFromBst(bst);
-    auto endAvl = chrono::high_resolution_clock::now();
-    auto durationAvl = chrono::duration_cast<chrono::microseconds>(endAvl-startAvl).count();
-    cout << "BST built in " << durationBst << " microseconds." << endl
-         << "AVL built in " << durationAvl << " microseconds." << endl;
-    string targetId = "ORD40";
-    startBst = chrono::high_resolution_clock::now();
-    Order* temp = bst.searchByOrderId(targetId);
-    endBst = chrono::high_resolution_clock::now();
-    startAvl = chrono::high_resolution_clock::now();
-    temp = avl.searchByOrderId(targetId);
-    endAvl = chrono::high_resolution_clock::now();
-    durationBst = chrono::duration_cast<chrono::nanoseconds>(endBst-startBst).count();
-    durationAvl = chrono::duration_cast<chrono::nanoseconds>(endAvl-startAvl).count();
-    cout << "Order with ID " << targetId << " found:" << endl
-         << "Binary Search Tree search time: " << durationBst << " nanoseconds." << endl
-         << "AVL Tree Search Time: " << durationAvl << " nanoseconds." << endl;
+    string targetIds[5] = {"ORD10", "ORD20", "ORD30", "ORD40", "ORD50"};
+    for (string id: targetIds) {
+        testBinarySearch(bst, id);
+        testAvlSearch(avl, id);
+        cout << endl;
+    }
+
+
 
 
 
