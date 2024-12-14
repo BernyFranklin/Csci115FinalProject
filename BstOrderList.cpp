@@ -206,7 +206,6 @@ void BstOrderList::exportTree(const std::string& filename) const {
 
     file.close();
 }
-
 void BstOrderList::exportNode(std::ofstream& file, Node* node) const {
     if (node == nullptr) return;
 
@@ -219,4 +218,20 @@ void BstOrderList::exportNode(std::ofstream& file, Node* node) const {
 
     exportNode(file, node->left);
     exportNode(file, node->right);
+}
+// for comparing heights
+int BstOrderList::getHeight() const {
+    return calculateHeight(root);
+}
+int BstOrderList::calculateHeight(BstOrderList::Node *node) const {
+    if (node == nullptr) {
+        return -1;          // empty subtree
+    }
+
+    // recursively calculate the height of the left and right sub trees
+    int leftHeight = calculateHeight(node->left);
+    int rightHeight = calculateHeight(node->right);
+
+    // height of the current node is 1 + max of left and right heights
+    return 1 + max(leftHeight, rightHeight);
 }

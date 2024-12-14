@@ -21,6 +21,7 @@ private:
     Node* findMin(Node* node) const;                            // used to find min value in right tree
     void traverseInOrder(Node* node) const;                     // traverse
     void destroyTree(Node* node);                               // goodbye tree
+    int calculateHeight(Node* node) const;
 
 public:
     // constructor
@@ -37,9 +38,10 @@ public:
     Order* findMin() const;                                 // used to find min value of tree
     void fillBstFromFile(const string& filename);           // fills from file
     void loadFromArrayOrderList(ArrayOrderList& list);      // fills from array
-
-    void exportTree(const std::string& filename) const;
+    void exportTree(const std::string& filename) const;     // exports tree for graphics
     void exportNode(std::ofstream& file, Node* node) const;
+    int getHeight() const;
+
 
 };
 

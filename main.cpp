@@ -47,6 +47,7 @@ int main() {
 
     BstOrderList bst;
     bst.loadFromArrayOrderList(arrayList);
-    bst.exportTree("/Users/frankbernal/CLionProjects/Csci115FinalProject/bst_tree.dot");
+    int height = bst.getHeight();
+    cout << "BST height = " << height << "." << endl;
     return 0;
 }
