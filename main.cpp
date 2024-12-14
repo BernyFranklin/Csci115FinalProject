@@ -7,6 +7,7 @@
 #include "SkipOrderList.h"
 #include "OrderSorting.h"
 #include "BstOrderList.h"
+#include "AvlOrderList.h"
 
 using namespace std;
 
@@ -22,7 +23,7 @@ int main() {
     arrayList.loadFromFile(orderFile);
 
     //ArrayOrderList arrayList;
-    //OrderSorting::generateOrders(1000, arrayList);
+
     //OrderSorting::timedSort(OrderSorting::mergeSort, arrayList);
 
 
@@ -40,14 +41,22 @@ int main() {
     doublyList.convertFromSingly(singlyList);
 
     // create SkipOrderList
-    SkipOrderList skipList;
-    // load skipList with the array
+    //SkipOrderList skipList;
+    //load skipList with the array
     skipList.loadFromArray(arrayList);
     */
 
     BstOrderList bst;
     bst.loadFromArrayOrderList(arrayList);
-    int height = bst.getHeight();
-    cout << "BST height = " << height << "." << endl;
+    int bstHeight = bst.getHeight();
+    cout << "BST height = " << bstHeight << "." << endl;
+    AvlOrderList avl;
+    avl.convertFromBst(bst);
+    int avlHeight = avl.getHeight();
+    cout << "AVL height = " << avlHeight << "." << endl;
+    avl.traverseInOrder();
+    avl.removeOrder("ORD50");
+    avl.traverseInOrder();
+
     return 0;
 }

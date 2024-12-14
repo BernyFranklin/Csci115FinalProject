@@ -5,7 +5,7 @@
 #include <string>
 
 class BstOrderList {
-private:
+public:
     struct Node {
         Order data;
         Node* left;
@@ -23,11 +23,8 @@ private:
     void destroyTree(Node* node);                               // goodbye tree
     int calculateHeight(Node* node) const;
 
-public:
-    // constructor
-    BstOrderList();
-    // destructor
-    ~BstOrderList();
+    BstOrderList();                                         // constructor
+    ~BstOrderList();                                        // destructor
     // required functions
     void addOrder(Order& order);                            // adds order object to the tree
     void removeOrder(string& orderId);                      // removes order object from the tree
@@ -39,9 +36,8 @@ public:
     void fillBstFromFile(const string& filename);           // fills from file
     void loadFromArrayOrderList(ArrayOrderList& list);      // fills from array
     void exportTree(const std::string& filename) const;     // exports tree for graphics
-    void exportNode(std::ofstream& file, Node* node) const;
-    int getHeight() const;
-
+    void exportNode(std::ofstream& file, Node* node) const; // helper ^
+    int getHeight() const;                                  // returns height of tree
 
 };
 

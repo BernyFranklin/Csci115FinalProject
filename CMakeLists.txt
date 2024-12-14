@@ -22,4 +22,6 @@ add_executable(Csci115FinalProject
         OrderSorting.cpp
         OrderSorting.h
         BstOrderList.h
-        BstOrderList.cpp)
+        BstOrderList.cpp
+        AvlOrderList.h
+        AvlOrderList.cpp)
