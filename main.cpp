@@ -47,15 +47,30 @@ int main() {
     */
 
     BstOrderList bst;
+    auto startBst = chrono::high_resolution_clock::now();
     bst.loadFromArrayOrderList(arrayList);
-    bst.exportTree("/Users/frankbernal/CLionProjects/Csci115FinalProject/bst_tree.dot");
-    int bstHeight = bst.getHeight();
-    cout << "BST height = " << bstHeight << "." << endl;
+    auto endBst = chrono::high_resolution_clock::now();
+    auto durationBst = chrono::duration_cast<chrono::microseconds>(endBst-startBst).count();
     AvlOrderList avl;
+    auto startAvl = chrono::high_resolution_clock::now();
     avl.convertFromBst(bst);
-    avl.exportTree("/Users/frankbernal/CLionProjects/Csci115FinalProject/avl_tree.dot");
-    int avlHeight = avl.getHeight();
-    cout << "AVL height = " << avlHeight << "." << endl;
+    auto endAvl = chrono::high_resolution_clock::now();
+    auto durationAvl = chrono::duration_cast<chrono::microseconds>(endAvl-startAvl).count();
+    cout << "BST built in " << durationBst << " microseconds." << endl
+         << "AVL built in " << durationAvl << " microseconds." << endl;
+    string targetId = "ORD40";
+    startBst = chrono::high_resolution_clock::now();
+    Order* temp = bst.searchByOrderId(targetId);
+    endBst = chrono::high_resolution_clock::now();
+    startAvl = chrono::high_resolution_clock::now();
+    temp = avl.searchByOrderId(targetId);
+    endAvl = chrono::high_resolution_clock::now();
+    durationBst = chrono::duration_cast<chrono::nanoseconds>(endBst-startBst).count();
+    durationAvl = chrono::duration_cast<chrono::nanoseconds>(endAvl-startAvl).count();
+    cout << "Order with ID " << targetId << " found:" << endl
+         << "Binary Search Tree search time: " << durationBst << " nanoseconds." << endl
+         << "AVL Tree Search Time: " << durationAvl << " nanoseconds." << endl;
+
 
 
     return 0;
