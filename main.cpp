@@ -48,15 +48,15 @@ int main() {
 
     BstOrderList bst;
     bst.loadFromArrayOrderList(arrayList);
+    bst.exportTree("/Users/frankbernal/CLionProjects/Csci115FinalProject/bst_tree.dot");
     int bstHeight = bst.getHeight();
     cout << "BST height = " << bstHeight << "." << endl;
     AvlOrderList avl;
     avl.convertFromBst(bst);
+    avl.exportTree("/Users/frankbernal/CLionProjects/Csci115FinalProject/avl_tree.dot");
     int avlHeight = avl.getHeight();
     cout << "AVL height = " << avlHeight << "." << endl;
-    avl.traverseInOrder();
-    avl.removeOrder("ORD50");
-    avl.traverseInOrder();
+
 
     return 0;
 }

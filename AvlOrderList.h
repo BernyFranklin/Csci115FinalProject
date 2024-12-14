@@ -5,6 +5,7 @@
 #include "BstOrderList.h"
 #include <iostream>
 #include <algorithm>
+#include <fstream>
 
 class AvlOrderList {
 private:
@@ -36,6 +37,7 @@ private:
     Node* findMin(Node* node) const;
 
     void traverseInOrder(Node* node) const;
+    void exportNode(ofstream& out, Node* node) const;
 
 public:
     AvlOrderList();
@@ -47,6 +49,7 @@ public:
     void convertFromBst(const BstOrderList& bst);
     void traverseInOrder() const;
     int getHeight() const;
+    void exportTree(const string& filename) const;
 };
 
 #endif

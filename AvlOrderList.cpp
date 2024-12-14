@@ -1,5 +1,6 @@
 #include "AvlOrderList.h"
 #include "BstOrderList.h"
+#include <fstream>
 
 AvlOrderList::AvlOrderList() : root(nullptr) {}
 
@@ -239,6 +240,49 @@ AvlOrderList::Node* AvlOrderList::balance(Node* node) {
     }
 
     return node; // Already balanced
+}
+
+void AvlOrderList::exportTree(const std::string& filename) const {
+    ofstream out(filename);
+
+    if (!out.is_open()) {
+        std::cerr << "Error: Unable to open file " << filename << std::endl;
+        return;
+    }
+
+    out << "digraph AVLTree {" << std::endl;
+
+    if (root != nullptr) {
+        exportNode(out, root);
+    }
+
+    out << "}" << std::endl;
+
+    out.close();
+    std::cout << "Tree exported to " << filename << std::endl;
+}
+
+void AvlOrderList::exportNode(std::ofstream& out, Node* node) const {
+    if (node == nullptr) {
+        return;
+    }
+
+    // Write the current node
+    out << "  \"" << node->data.getId() << "\" [label=\""
+        << node->data.getId() << "\\nPriority: " << node->data.getPriority()
+        << "\\nDestination: " << node->data.getDestination()
+        << "\"];" << std::endl;
+
+    // Write edges to children
+    if (node->left != nullptr) {
+        out << "  \"" << node->data.getId() << "\" -> \"" << node->left->data.getId() << "\";" << std::endl;
+        exportNode(out, node->left);
+    }
+
+    if (node->right != nullptr) {
+        out << "  \"" << node->data.getId() << "\" -> \"" << node->right->data.getId() << "\";" << std::endl;
+        exportNode(out, node->right);
+    }
 }
 
 
