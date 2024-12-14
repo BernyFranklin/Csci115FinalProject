@@ -1,6 +1,7 @@
 #ifndef BSTORDERLIST_H
 #define BSTORDERLIST_H
 #include "Orders.h"
+#include "ArrayOrderList.h"
 #include <string>
 
 class BstOrderList {
@@ -34,6 +35,12 @@ public:
 
     // helpers
     Order* findMin() const;                                 // used to find min value of tree
+    void fillBstFromFile(const string& filename);           // fills from file
+    void loadFromArrayOrderList(ArrayOrderList& list);      // fills from array
+
+    void exportTree(const std::string& filename) const;
+    void exportNode(std::ofstream& file, Node* node) const;
+
 };
 
 #endif

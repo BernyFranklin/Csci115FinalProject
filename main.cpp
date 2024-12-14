@@ -6,6 +6,7 @@
 #include "DoublyOrderList.h"
 #include "SkipOrderList.h"
 #include "OrderSorting.h"
+#include "BstOrderList.h"
 
 using namespace std;
 
@@ -16,13 +17,13 @@ int main() {
     string orderFile = "/Users/frankbernal/CLionProjects/Csci115FinalProject/sampleOrders.txt";
 
     // create the array
-    //ArrayOrderList arrayList;
-    // load values
-    //arrayList.loadFromFile(orderFile);
-
     ArrayOrderList arrayList;
-    OrderSorting::generateOrders(1000, arrayList);
-    OrderSorting::timedSort(OrderSorting::mergeSort, arrayList);
+    // load values
+    arrayList.loadFromFile(orderFile);
+
+    //ArrayOrderList arrayList;
+    //OrderSorting::generateOrders(1000, arrayList);
+    //OrderSorting::timedSort(OrderSorting::mergeSort, arrayList);
 
 
     /*
@@ -43,5 +44,9 @@ int main() {
     // load skipList with the array
     skipList.loadFromArray(arrayList);
     */
+
+    BstOrderList bst;
+    bst.loadFromArrayOrderList(arrayList);
+    bst.exportTree("/Users/frankbernal/CLionProjects/Csci115FinalProject/bst_tree.dot");
     return 0;
 }

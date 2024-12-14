@@ -1,7 +1,12 @@
 #include "BstOrderList.h"
+#include "ArrayOrderList.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <string>
+#include <algorithm>
+#include <random>
+
 using namespace std;
 // constructor
 BstOrderList::BstOrderList() : root(nullptr){}
@@ -149,7 +154,7 @@ void BstOrderList::traverseInOrder(BstOrderList::Node *node) const {
     traverseInOrder(node->right);     // go right
 }
 // fill the BST from our txt file
-void fillBstFromFile(BstOrderList& bst, const string& filename) {
+void BstOrderList::fillBstFromFile(const std::string &filename) {
     ifstream file(filename);
     if (!file.is_open()) {
         cerr << "\n\nError: could not open file." << endl;
@@ -164,8 +169,54 @@ void fillBstFromFile(BstOrderList& bst, const string& filename) {
 
         if (getline(ss, id, ',') && ss >> priority && ss.ignore() && getline(ss, destination)) {
             Order order(id, priority, destination);
-            bst.addOrder(order);
+            addOrder(order);
         }
     }
     file.close();
+}
+// fill from a randomized array
+void BstOrderList::loadFromArrayOrderList(ArrayOrderList& list) {
+    // create a vector of Order objects from the ArrayOrderList
+    vector<Order> orders;
+    for (int i = 0; i < list.getSize(); i++) {
+        orders.push_back(list.getOrder(i));
+    }
+
+    // shuffle the orders
+    random_device rd;
+    mt19937 g(rd());
+    shuffle(orders.begin(), orders.end(), g);
+
+    // insert the shuffled orders into the BST
+    for (auto& order : orders) {
+        addOrder(order);
+    }
+}
+// for visualization
+void BstOrderList::exportTree(const std::string& filename) const {
+    std::ofstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Error: Could not open file " << filename << std::endl;
+        return;
+    }
+
+    file << "digraph BST {" << std::endl;
+    exportNode(file, root);
+    file << "}" << std::endl;
+
+    file.close();
+}
+
+void BstOrderList::exportNode(std::ofstream& file, Node* node) const {
+    if (node == nullptr) return;
+
+    if (node->left != nullptr) {
+        file << "\"" << node->data.getId() << "\" -> \"" << node->left->data.getId() << "\";" << std::endl;
+    }
+    if (node->right != nullptr) {
+        file << "\"" << node->data.getId() << "\" -> \"" << node->right->data.getId() << "\";" << std::endl;
+    }
+
+    exportNode(file, node->left);
+    exportNode(file, node->right);
 }
