@@ -8,6 +8,7 @@
 #include "OrderSorting.h"
 #include "BstOrderList.h"
 #include "AvlOrderList.h"
+#include "RouteOptimization.h"
 
 using namespace std;
 
@@ -63,10 +64,15 @@ int main() {
     AvlOrderList avl;
     avl.convertFromBst(bst);
 
+    // create graph
+    RouteOptimization route;
+    cout << "Weighted Directed Graph:" << endl;
+    // display graph
+    route.displayGraph();
+    // perform dfs starting at node "A"
+    route.dfs("A");
+    route.bfs("A");
 
-
-
-
-
+    
     return 0;
 }

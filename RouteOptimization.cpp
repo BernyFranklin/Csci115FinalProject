@@ -1,4 +1,6 @@
 #include "RouteOptimization.h"
+#include <unordered_set>
+#include <queue>
 
 // constructor
 RouteOptimization::RouteOptimization() {
@@ -24,4 +26,50 @@ void RouteOptimization::displayGraph() const {
         }
         cout << endl;
     }
+}
+// public function to start dfs
+void RouteOptimization::dfs(const std::string &startNode) const{
+    unordered_set<string> visited;                                      // track visited nodes
+    cout << "\nDFS starting from node " << startNode << ":" << endl;
+    dfsHelper(startNode, visited);
+    cout << endl;
+}
+// private recursive helper function for dfs
+void RouteOptimization::dfsHelper(const std::string &node, unordered_set<std::string> &visited) const {
+    visited.insert(node);                                           // mark current node as visited
+    cout << node << " ";                                               // print current node
+
+    // explore all neighbors
+    for (const auto& neighbor : graph.at(node)) {
+        if (visited.find(neighbor.first) == visited.end()) {        // if not visited
+            dfsHelper(neighbor.first, visited);
+        }
+    }
+
+}
+// public function to perform bfs starting from a given node
+void RouteOptimization::bfs(const std::string &startNode) const {
+    unordered_set<string> visited;                                      // set to track visited nodes
+    queue<string> q;                                                    // queue for bfs traversal
+
+    // start bfs from initial node
+    visited.insert(startNode);
+    q.push(startNode);
+
+    cout << "BFS starting from node " << startNode << ":" << endl;
+
+    while (!q.empty()) {
+        string current = q.front();                                     // dequeue the front node
+        q.pop();
+        cout << current << " ";                                         // print current node
+
+        // explore neighbors
+        for (const auto& neighbor : graph.at(current)) {
+            if (visited.find(neighbor.first) == visited.end()) {    // if not visited
+                visited.insert(neighbor.first);                     // mark as visited
+                q.push(neighbor.first);                             // enqueue neighbor
+            }
+        }
+    }
+    cout << endl;
 }
