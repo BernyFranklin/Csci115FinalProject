@@ -24,4 +24,6 @@ add_executable(Csci115FinalProject
         BstOrderList.h
         BstOrderList.cpp
         AvlOrderList.h
-        AvlOrderList.cpp)
+        AvlOrderList.cpp
+        RouteOptimization.h
+        RouteOptimization.cpp)
