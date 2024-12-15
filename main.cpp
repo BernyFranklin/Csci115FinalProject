@@ -37,12 +37,7 @@ int main() {
     // load values
     arrayList.loadFromFile(orderFile);
 
-    //ArrayOrderList arrayList;
 
-    //OrderSorting::timedSort(OrderSorting::mergeSort, arrayList);
-
-
-    /*
     // create the SinglyLinkedList
     SinglyOrderList singlyList;
     // iterate through array and fill the list
@@ -56,21 +51,18 @@ int main() {
     doublyList.convertFromSingly(singlyList);
 
     // create SkipOrderList
-    //SkipOrderList skipList;
+    SkipOrderList skipList;
     //load skipList with the array
     skipList.loadFromArray(arrayList);
-    */
 
+    // create BstOrderList
     BstOrderList bst;
     bst.loadFromArrayOrderList(arrayList);
+
+    // create AvlOrderList
     AvlOrderList avl;
     avl.convertFromBst(bst);
-    string targetIds[5] = {"ORD10", "ORD20", "ORD30", "ORD40", "ORD50"};
-    for (string id: targetIds) {
-        testBinarySearch(bst, id);
-        testAvlSearch(avl, id);
-        cout << endl;
-    }
+
 
 
 

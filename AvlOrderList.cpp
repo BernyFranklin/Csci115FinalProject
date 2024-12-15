@@ -28,36 +28,51 @@ int AvlOrderList::getBalanceFactor(Node* node) const {
 
 //rotations
 AvlOrderList::Node* AvlOrderList::rotateLeft(Node* node) {
+    // rotate the nodes
+    // step 1: set the new root to the right child of the current node
     Node* newRoot = node->right;
+    // step 2: move the left subtree of newRoot to the right of the current node
     node->right = newRoot->left;
+    // step 3: set the current node as the left child of the new root
     newRoot->left = node;
 
     // Update heights
+    // step 4: update height of the current node
     node->height = 1 + std::max(getHeight(node->left), getHeight(node->right));
+    // step 5: update the height of the new root
     newRoot->height = 1 + std::max(getHeight(newRoot->left), getHeight(newRoot->right));
-
+    // step 6: return the new root of the rotated subtree
     return newRoot;
 }
 
 AvlOrderList::Node* AvlOrderList::rotateRight(Node* node) {
+    // step 1: set the new root  to the left child of the current node
     Node* newRoot = node->left;
+    // step 2: move the right subtree of the new root to the left of the current node
     node->left = newRoot->right;
+    // step 3: set the current node as the right child of the new root
     newRoot->right = node;
 
     // Update heights
+    // step 4: update the height of the current node
     node->height = 1 + std::max(getHeight(node->left), getHeight(node->right));
+    // step 5: update the height of the new root
     newRoot->height = 1 + std::max(getHeight(newRoot->left), getHeight(newRoot->right));
-
+    // step 6: return the new root of the rotated subtree
     return newRoot;
 }
 
 AvlOrderList::Node* AvlOrderList::rotateLeftRight(Node* node) {
+    // rotate left
     node->left = rotateLeft(node->left);
+    // rotate right and return
     return rotateRight(node);
 }
 
 AvlOrderList::Node* AvlOrderList::rotateRightLeft(Node* node) {
+    // rotate right
     node->right = rotateRight(node->right);
+    // rotate left and return
     return rotateLeft(node);
 }
 
@@ -99,6 +114,7 @@ AvlOrderList::Node* AvlOrderList::insert(Node* node, const Order& order) {
     return node;
 }
 
+// required functions
 void AvlOrderList::addOrder(const Order& order) {
     root = insert(root, order);
 }
