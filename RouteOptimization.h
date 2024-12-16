@@ -12,12 +12,18 @@ class RouteOptimization {
 private:
     // adjacency list representation: Node -> list of pairs (Neighbor, Weight)
     unordered_map<string, vector<pair<string, int>>> graph;
-    void dfsHelper(const string& node, unordered_set<string>& visited) const;
+    void dfsAllNodesHelper(const string &node, unordered_set<string> &visited) const;
+    bool dfsTargetNodeHelper(const string& node, const string& targetNode,
+                             unordered_set<string>& visited, vector<pair<string,
+                             int>>& path, int& currentWeight) const;
 
 public:
     RouteOptimization();
     void displayGraph() const;
-    void dfs(const string& startNode) const;
-    void bfs(const string& startNode) const;
+    void dfsAllNodes(const string &startNode) const;
+    void dfsTargetNode(const string& startNode, const string& targetNode) const;
+    void bfsAllNodes(const string &startNode) const;
+    void bfsTargetNode(const string& startNode, const string& targetNode) const;
+
 };
 #endif

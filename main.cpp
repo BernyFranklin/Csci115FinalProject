@@ -69,10 +69,11 @@ int main() {
     cout << "Weighted Directed Graph:" << endl;
     // display graph
     route.displayGraph();
-    // perform dfs starting at node "A"
-    route.dfs("A");
-    route.bfs("A");
+    // perform dfsAllNodes starting at node "A"
+    route.dfsAllNodes("A");
+    route.bfsAllNodes("A");
+    route.bfsTargetNode("A", "J");
+    route.dfsTargetNode("A", "J");
 
-    
     return 0;
 }
