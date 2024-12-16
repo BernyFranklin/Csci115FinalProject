@@ -2,6 +2,7 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <queue>
+#include <limits>
 
 // constructor
 RouteOptimization::RouteOptimization() {
@@ -39,18 +40,16 @@ void RouteOptimization::dfsAllNodes(const string &startNode) const{
 void RouteOptimization::dfsTargetNode(const std::string &startNode, const std::string &targetNode) const {
     unordered_set<string> visited;                  // track visited nodes
     vector<pair<string, int>> path;                 // tracks path weights
-    int currentWeight = 0;                          // tracks accumulated weight
-    bool found = dfsTargetNodeHelper(startNode, targetNode, visited, path, currentWeight);
+    int finalWeight = 0;                          // tracks accumulated weight
+    bool found = dfsTargetNodeHelper(startNode, targetNode, visited, path, 0, finalWeight);
 
     if (found) {
         cout << "Path (DFS) from " << startNode << " to " << targetNode << ":" << endl;
-        int totalWeight = 0;
         for (size_t i = 0; i < path.size(); i++) {
             if (i > 0) cout << " -> ";
             cout << path[i].first << "(" << path[i].second << ")";
-            totalWeight += path[i].second;
         }
-        cout << "(Total Weight: " << totalWeight << ")" << endl;
+        cout << "(Total Weight: " << finalWeight << ")" << endl;
         return;
     }
     cout << "Target node " << targetNode << " not reachable from " << startNode << "." << endl;
@@ -71,7 +70,7 @@ void RouteOptimization::dfsAllNodesHelper(const string &node, unordered_set<stri
 // private recursive helper function for dfs to a target node
 bool RouteOptimization::dfsTargetNodeHelper(const std::string &node, const std::string &targetNode,
                                             unordered_set<std::string> &visited, vector<pair<std::string, int>> &path,
-                                            int &currentWeight) const {
+                                            int currentWeight, int& finalWeight) const {
     visited.insert(node);
 
     if (path.empty()) {
@@ -79,6 +78,7 @@ bool RouteOptimization::dfsTargetNodeHelper(const std::string &node, const std::
     }
     // if found
     if (node == targetNode) {
+        finalWeight = currentWeight;
         return true;
     }
 
@@ -86,14 +86,13 @@ bool RouteOptimization::dfsTargetNodeHelper(const std::string &node, const std::
     for (const auto& neighbor : graph.at(node)) {
         if (visited.find(neighbor.first) == visited.end()) {
             path.push_back({neighbor.first, neighbor.second});        // add current node and edge weight
-            currentWeight += neighbor.second;
-            if (dfsTargetNodeHelper(neighbor.first, targetNode, visited, path, currentWeight)) {
+
+            if (dfsTargetNodeHelper(neighbor.first, targetNode, visited, path, currentWeight + neighbor.second, finalWeight)) {
                 return true;                                        // stop recursion
             }
 
             // backtrack
             path.pop_back();
-            currentWeight -= neighbor.second;
         }
     }
     return false;
@@ -176,4 +175,70 @@ void RouteOptimization::bfsTargetNode(const std::string &startNode, const std::s
 
     // if not found
     cerr << "Error: Target Node " << targetNode << " not reachable from " << startNode << "." << endl;
+}
+// custom comparator for priority queue for Dijkstra
+struct Compare {
+    bool operator()(const pair<int, string>& a, const pair<int, string>& b) {
+        return a.first > b.first;           // min-heap based on distance
+    }
+};
+// dijkstra's algorithm to find shortest paths from a start node
+void RouteOptimization::dijkstraAllNodes(const std::string &startNode) const {
+    priority_queue<pair<int, string>, vector<pair<int, string>>, Compare> pq;
+    unordered_map<string, int> distance;
+    unordered_map<string, string> parent;
+
+    // initialize distances to infinity and parent nodes to empty
+    for (const auto& pair : graph) {
+        distance[pair.first] = numeric_limits<int>::max();
+    }
+
+    // distance to the start node is 0
+    distance[startNode] = 0;
+    pq.push({0, startNode});
+
+    while (!pq.empty()) {
+        auto [currentDist, currentNode] = pq.top();
+        pq.pop();
+
+        // if current distance is greater, skip processing
+        if (currentDist > distance[currentNode]) continue;
+
+        // explore neighbors
+        for (const auto& neighbor : graph.at(currentNode)) {
+            const string& neighborNode = neighbor.first;
+            int edgeWeight = neighbor.second;
+
+            // calculate new distance
+            int newDist = distance[currentNode] + edgeWeight;
+
+            // update distance if it's shorter
+            if (newDist < distance[neighborNode]) {
+                distance[neighborNode] = newDist;
+                parent[neighborNode] = currentNode;
+                pq.push({newDist, neighborNode});
+            }
+        }
+    }
+
+    // display results
+    cout << "Shortest paths from node " << startNode << ":" << endl;
+    for (const auto& pair : distance) {
+        string node = pair.first;
+        int dist = pair.second;
+
+        if (dist == numeric_limits<int>::max()) {
+            cout << node << ": Unreachable" << endl;
+        }
+        else {
+            // reconstruct path
+            string path = node;
+            string current = node;
+            while (parent.find(current) != parent.end()) {
+                current = parent[current];
+                path = current + " -> " + path;
+            }
+            cout << node << ": " << dist << " (Path: " << path << ")" << endl;
+        }
+    }
 }

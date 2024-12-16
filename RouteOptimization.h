@@ -15,7 +15,7 @@ private:
     void dfsAllNodesHelper(const string &node, unordered_set<string> &visited) const;
     bool dfsTargetNodeHelper(const string& node, const string& targetNode,
                              unordered_set<string>& visited, vector<pair<string,
-                             int>>& path, int& currentWeight) const;
+                             int>>& path, int currentWeight, int& finalWeight) const;
 
 public:
     RouteOptimization();
@@ -24,6 +24,7 @@ public:
     void dfsTargetNode(const string& startNode, const string& targetNode) const;
     void bfsAllNodes(const string &startNode) const;
     void bfsTargetNode(const string& startNode, const string& targetNode) const;
+    void dijkstraAllNodes(const string& startNode) const;
 
 };
 #endif

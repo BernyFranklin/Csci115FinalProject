@@ -74,6 +74,6 @@ int main() {
     route.bfsAllNodes("A");
     route.bfsTargetNode("A", "J");
     route.dfsTargetNode("A", "J");
-
+    route.dijkstraAllNodes("A");
     return 0;
 }
