@@ -242,3 +242,61 @@ void RouteOptimization::dijkstraAllNodes(const std::string &startNode) const {
         }
     }
 }
+// dijkstra's algorithm to find shortest path to a target node
+bool RouteOptimization::dijkstraTargetNode(const std::string &startNode, const std::string &targetNode) const {
+    priority_queue<pair<int, string>, vector<pair<int, string>>, Compare> pq;
+    unordered_map<string, int> distance;            // to store shortest distance
+    unordered_map<string, string> parent;           // to reconstruct path
+
+    // initialize distances to infinity
+    for (const auto& pair : graph) {
+        distance[pair.first] = numeric_limits<int>::max();
+    }
+
+    // start node distance is 0
+    distance[startNode] = 0;
+    pq.push({0, startNode});
+
+    while (!pq.empty()) {
+        auto [currentDist, currentNode] = pq.top();
+        pq.pop();
+
+        // if we reached the target node, reconstruct and display path
+        if (currentNode == targetNode) {
+            cout << "Shortest path to node " << targetNode << ":" << endl;
+            string path = targetNode;
+            string current = targetNode;
+            int totalWeight = distance[targetNode];
+
+            // reconstruct path
+            while (parent.find(current) != parent.end()) {
+                current = parent[current];
+                path = current + " -> " + path;
+            }
+
+            cout << path << " (Total Weight: " << totalWeight << ")" << endl;
+            return true;
+        }
+        // skip if this distance is no longer optimal
+        if (currentDist > distance[currentNode]) continue;
+
+        // explore neighbors
+        for (const auto& neighbor : graph.at(currentNode)) {
+            const string& neighborNode = neighbor.first;
+            int edgeWeight = neighbor.second;
+
+            // calculate new distance
+            int newDist = distance[currentNode] + edgeWeight;
+
+            // if this path is shorter, update the distance and parent
+            if (newDist < distance[neighborNode]) {
+                distance[neighborNode] = newDist;
+                parent[neighborNode] = currentNode;
+                pq.push({newDist, neighborNode});
+            }
+        }
+    }
+    // target node not reachable
+    cout << "Target node " << targetNode << " is not reachable from " << startNode << "." << endl;
+    return false;
+}

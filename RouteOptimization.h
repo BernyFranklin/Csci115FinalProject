@@ -25,6 +25,7 @@ public:
     void bfsAllNodes(const string &startNode) const;
     void bfsTargetNode(const string& startNode, const string& targetNode) const;
     void dijkstraAllNodes(const string& startNode) const;
+    bool dijkstraTargetNode(const string& startNode, const string& targetNode) const;
 
 };
 #endif
