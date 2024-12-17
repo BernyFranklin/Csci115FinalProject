@@ -132,7 +132,6 @@ void SkipOrderList::removeOrder(const string &orderId) {
     }
 
     delete current;                                             // free memory
-    cout << "\n\nOrder with ID " << orderId << " deleted successfully." << endl;
 }
 
 // searchByOrderId by orderId

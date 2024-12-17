@@ -12,5 +12,6 @@ public:
     static char getInput();
     static bool validInput(char& userInput);
     static Order addOrder(string& orderId);
+    static string removeOrder();
 };
 #endif

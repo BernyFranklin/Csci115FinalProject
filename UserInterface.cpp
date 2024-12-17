@@ -83,3 +83,9 @@ Order UserInterface::addOrder(string& orderId) {
     Order newOrder = Order(orderId, priority, destination);
     return newOrder;
 }
+string UserInterface::removeOrder() {
+    string userInput;
+    cout << "Please enter id of order to delete: ";
+    cin >> userInput;
+    return userInput;
+}

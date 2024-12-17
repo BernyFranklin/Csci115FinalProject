@@ -63,7 +63,6 @@ void DoublyOrderList::removeOrder(const std::string &orderId) {
     }
 
     delete targetNode;          // free memory
-    cout << "\n\nOrder with ID " << orderId << " deleted successfully." << endl;
     size--;                     // reduce size
 }
 

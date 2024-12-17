@@ -59,7 +59,6 @@ void SinglyOrderList::removeOrder(const std::string &orderId) {
         Node* temp = head;
         head = head->next;
         delete temp;
-        cout << successString;
         return;
     }
 

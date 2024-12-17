@@ -84,8 +84,22 @@ int main() {
                 cout << "\n\n";
             }
                 break;
-            case '4':
-                cout << userInput << " selected" << endl;
+            case '4': {
+                cout << "\nDelete Order" << endl;
+                string orderId = UserInterface::removeOrder();
+                bool found = avl.searchByOrderId(orderId);
+                if (found) {
+                    arrayList.removeOrder(orderId);
+                    singlyList.removeOrder(orderId);
+                    doublyList.removeOrder(orderId);
+                    skipList.removeOrder(orderId);
+                    bst.removeOrder(orderId);
+                    avl.removeOrder(orderId);
+                }
+                else {
+                    cout << "\nOrder not found" << endl;
+                }
+            }
                 break;
             case '5':
                 cout << userInput << " selected" << endl;

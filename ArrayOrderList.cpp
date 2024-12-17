@@ -86,8 +86,6 @@ void ArrayOrderList::removeOrder(const std::string &orderId) {
     // decrease size
     size--;
 
-    // tell user
-    cout << "\n\nOrder with ID " << orderId << " removed successfully" << endl;
 }
 
 // searchByOrderId for an order by orderId
