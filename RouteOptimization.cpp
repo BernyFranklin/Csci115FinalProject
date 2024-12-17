@@ -272,7 +272,7 @@ bool RouteOptimization::dijkstraTargetNode(const std::string &startNode, const s
 
         // if we reached the target node, reconstruct and display path
         if (currentNode == targetNode) {
-            cout << "Shortest path (Dijkstra) from " << startNode << " to " << targetNode << ":" << endl;
+            cout << "\nShortest path from hub to location " << targetNode << ":" << endl;
             string path = targetNode;
             string current = targetNode;
             int totalWeight = distance[targetNode];

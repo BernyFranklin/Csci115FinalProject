@@ -1,5 +1,9 @@
+/*
+ * Thanks for a great semester professor
+ * I look forward to checking out the lab sometime soon
+ */
+
 #include <iostream>
-#include <fstream>
 #include "Orders.h"
 #include "ArrayOrderList.h"
 #include "SinglyOrderList.h"
@@ -10,7 +14,6 @@
 #include "AvlOrderList.h"
 #include "RouteOptimization.h"
 #include "UserInterface.h"
-#include "TimedOperations.h"
 
 using namespace std;
 
@@ -56,6 +59,7 @@ int main() {
     char userInput = 'x';
     bool userQuit = false;
     while(!userQuit) {
+        cout << endl;
         string ordId = "ORD" + to_string(arrayList.getSize() + 1);
         UserInterface::displayMenu();
         userInput = UserInterface::getInput();
@@ -86,7 +90,7 @@ int main() {
                 break;
             case '4': {
                 cout << "\nDelete Order" << endl;
-                string orderId = UserInterface::removeOrder();
+                string orderId = UserInterface::getOrderId();
                 bool found = avl.searchByOrderId(orderId);
                 if (found) {
                     arrayList.removeOrder(orderId);
@@ -95,17 +99,36 @@ int main() {
                     skipList.removeOrder(orderId);
                     bst.removeOrder(orderId);
                     avl.removeOrder(orderId);
-                }
-                else {
+                } else {
                     cout << "\nOrder not found" << endl;
                 }
             }
                 break;
-            case '5':
-                cout << userInput << " selected" << endl;
+            case '5': {
+                cout << "Find Order by Order ID" << endl;
+                    string orderId = UserInterface::getOrderId();
+                    Order *targetOrder = avl.searchByOrderId(orderId);
+                    if (!targetOrder) {
+                        cout << "\nOrder not found" << endl;
+                    } else {
+                        cout << "\nOrder found" << endl;
+                        targetOrder->displayOrder();
+                        cout << "\n";
+                    }
+            }
                 break;
-            case '6':
-                cout << userInput << " selected" << endl;
+            case '6': {
+                cout << "\nView Route by Order ID" << endl;
+                string orderId = UserInterface::getOrderId();
+                Order* targetOrder = avl.searchByOrderId(orderId);
+                if (!targetOrder) {
+                    cout << "\nOrder not found" << endl;
+                }
+                else {
+                    string destination = targetOrder->getDestination();
+                    route.dijkstraTargetNode("A", destination);
+                }
+            }
                 break;
             case '7': {
                 cout << "\nSort and View by Priority" << endl;
@@ -120,7 +143,6 @@ int main() {
         }
     }
     cout << "Thank you for using the app!" << endl;
-
 
     return 0;
 }
