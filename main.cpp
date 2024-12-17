@@ -88,8 +88,11 @@ int main() {
             case '6':
                 cout << userInput << " selected" << endl;
                 break;
-            case '7':
-                cout << userInput << " selected" << endl;
+            case '7': {
+                OrderSorting::quickSort(arrayList);
+                arrayList.displayOrders();
+                cout << "\n\n";
+            }
                 break;
             default:
                 userQuit = true;
