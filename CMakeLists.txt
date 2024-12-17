@@ -28,4 +28,6 @@ add_executable(Csci115FinalProject
         RouteOptimization.h
         RouteOptimization.cpp
         TimedOperations.h
-        TimedOperations.cpp)
+        TimedOperations.cpp
+        UserInterface.h
+        UserInterface.cpp)
