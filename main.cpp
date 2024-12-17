@@ -60,7 +60,18 @@ int main() {
         UserInterface::displayMenu();
         userInput = UserInterface::getInput();
         switch(userInput) {
-            case '1':{
+            case '1': {
+                cout << "\nView Order Listings Ascending" << endl;
+                singlyList.displayOrders();
+            }
+                break;
+            case '2': {
+                cout << "\nView Order Listings Descending" << endl;
+                doublyList.displayBackward();
+            }
+                break;
+            case '3': {
+                cout << "\nAdd Order" << endl;
                 Order newOrder = UserInterface::addOrder(ordId);
                 arrayList.addOrder(newOrder);
                 singlyList.addOrder(newOrder);
@@ -73,12 +84,6 @@ int main() {
                 cout << "\n\n";
             }
                 break;
-            case '2':
-                cout << userInput << " selected" << endl;
-                break;
-            case '3':
-                cout << userInput << " selected" << endl;
-                break;
             case '4':
                 cout << userInput << " selected" << endl;
                 break;
@@ -89,6 +94,7 @@ int main() {
                 cout << userInput << " selected" << endl;
                 break;
             case '7': {
+                cout << "\nSort and View by Priority" << endl;
                 OrderSorting::quickSort(arrayList);
                 arrayList.displayOrders();
                 cout << "\n\n";
