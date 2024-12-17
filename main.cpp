@@ -56,11 +56,22 @@ int main() {
     char userInput = 'x';
     bool userQuit = false;
     while(!userQuit) {
+        string ordId = "ORD" + to_string(arrayList.getSize() + 1);
         UserInterface::displayMenu();
         userInput = UserInterface::getInput();
         switch(userInput) {
-            case '1':
-                cout << userInput << " selected" << endl;
+            case '1':{
+                Order newOrder = UserInterface::addOrder(ordId);
+                arrayList.addOrder(newOrder);
+                singlyList.addOrder(newOrder);
+                doublyList.addOrder(newOrder);
+                skipList.addOrder(newOrder);
+                bst.addOrder(newOrder);
+                avl.addOrder(newOrder);
+                cout << "\n\nOrder with ID " << ordId << " added" << endl;
+                newOrder.displayOrder();
+                cout << "\n\n";
+            }
                 break;
             case '2':
                 cout << userInput << " selected" << endl;

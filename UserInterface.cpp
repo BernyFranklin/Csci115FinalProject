@@ -1,6 +1,8 @@
 #include "UserInterface.h"
+#include "Orders.h"
 #include <iostream>
 #include <cctype>
+#include <string>
 using namespace std;
 
 void UserInterface::displayMenu() {
@@ -47,4 +49,37 @@ bool UserInterface::validInput(char& userInput) {
     }
     cout << validStringExample;
     return false;
+}
+Order UserInterface::addOrder(string& orderId) {
+    bool valid = false;
+    string userInput;
+    int priority;
+    string destination;
+    while (!valid) {
+        cout << "Please Enter a Priority 1 - 5: ";
+        cin >> userInput;
+        if(isdigit(userInput[0]) && !(userInput[0] < '1' || userInput[0] > '7')) {
+            priority = stoi(userInput);
+            valid = true;
+        }
+        else {
+            cout << "Invalid priority, please try again" << endl;
+        }
+    }
+    valid = false;
+    userInput = "";
+    while (!valid) {
+        cout << "Please Enter a Destination B - J: ";
+        cin >> userInput;
+        userInput = toupper(userInput[0]);
+        if (userInput.length() == 1 && !(userInput[0] < 'B' || userInput[0] > 'J')) {
+            destination = userInput[0];
+            valid = true;
+        }
+        else {
+            cout << "Invalid Destination, please try again" << endl;
+        }
+    }
+    Order newOrder = Order(orderId, priority, destination);
+    return newOrder;
 }
