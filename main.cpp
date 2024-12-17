@@ -54,9 +54,36 @@ int main() {
     RouteOptimization route;
 
     char userInput = 'x';
-    while(userInput != '0') {
+    bool userQuit = false;
+    while(!userQuit) {
         UserInterface::displayMenu();
         userInput = UserInterface::getInput();
+        switch(userInput) {
+            case '1':
+                cout << userInput << " selected" << endl;
+                break;
+            case '2':
+                cout << userInput << " selected" << endl;
+                break;
+            case '3':
+                cout << userInput << " selected" << endl;
+                break;
+            case '4':
+                cout << userInput << " selected" << endl;
+                break;
+            case '5':
+                cout << userInput << " selected" << endl;
+                break;
+            case '6':
+                cout << userInput << " selected" << endl;
+                break;
+            case '7':
+                cout << userInput << " selected" << endl;
+                break;
+            default:
+                userQuit = true;
+                break;
+        }
     }
     cout << "Thank you for using the app!" << endl;
 
