@@ -13,22 +13,6 @@
 
 using namespace std;
 
-void testBinarySearch(BstOrderList& bst, string& targetId) {
-    auto startTime = chrono::high_resolution_clock::now();
-    bst.removeOrder(targetId);
-    auto endTime = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::nanoseconds>(endTime - startTime).count();
-    cout << "BST deleted order with ID " << targetId << " in " << duration << " nanoseconds." << endl;
-
-}
-void testAvlSearch(AvlOrderList& avl, string& targetId) {
-    auto startTime = chrono::high_resolution_clock::now();
-    avl.removeOrder(targetId);
-    auto endTime = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::nanoseconds>(endTime - startTime).count();
-    cout << "AVL deleted order with ID " << targetId << " in " << duration << " nanoseconds." << endl;
-
-}
 int main() {
     // file contains the original sample input of 50 orders
     // replace this string to match where the folder is on YOUR machine
@@ -66,6 +50,11 @@ int main() {
 
     // create graph
     RouteOptimization route;
-    route.dijkstraAllNodes("A");
+    TimedOperations::timedDFS(route, "A", "I");
+    TimedOperations::timedBFS(route, "A", "I");
+    TimedOperations::timedDFS(route, "A", "C");
+    TimedOperations::timedBFS(route, "A", "C");
+    TimedOperations::timedDFS(route, "A", "E");
+    TimedOperations::timedBFS(route, "A", "E");
     return 0;
 }
