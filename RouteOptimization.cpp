@@ -29,6 +29,7 @@ void RouteOptimization::displayGraph() const {
         cout << endl;
     }
 }
+
 // public function to perform dfsAllNodes
 void RouteOptimization::dfsAllNodes(const string &startNode) const{
     unordered_set<string> visited;                                      // track visited nodes
@@ -36,6 +37,7 @@ void RouteOptimization::dfsAllNodes(const string &startNode) const{
     dfsAllNodesHelper(startNode, visited);
     cout << endl;
 }
+
 // public function to perform dfs to a target node
 void RouteOptimization::dfsTargetNode(const std::string &startNode, const std::string &targetNode) const {
     unordered_set<string> visited;                  // track visited nodes
@@ -44,7 +46,7 @@ void RouteOptimization::dfsTargetNode(const std::string &startNode, const std::s
     bool found = dfsTargetNodeHelper(startNode, targetNode, visited, path, 0, finalWeight);
 
     if (found) {
-        cout << "Path (DFS) from " << startNode << " to " << targetNode << ":" << endl;
+        cout << "Shortest Path (DFS) from " << startNode << " to " << targetNode << ":" << endl;
         for (size_t i = 0; i < path.size(); i++) {
             if (i > 0) cout << " -> ";
             cout << path[i].first << "(" << path[i].second << ")";
@@ -54,6 +56,7 @@ void RouteOptimization::dfsTargetNode(const std::string &startNode, const std::s
     }
     cout << "Target node " << targetNode << " not reachable from " << startNode << "." << endl;
 }
+
 // private recursive helper function for dfsAllNodes
 void RouteOptimization::dfsAllNodesHelper(const string &node, unordered_set<string> &visited) const {
     visited.insert(node);                                           // mark current node as visited
@@ -67,6 +70,7 @@ void RouteOptimization::dfsAllNodesHelper(const string &node, unordered_set<stri
     }
 
 }
+
 // private recursive helper function for dfs to a target node
 bool RouteOptimization::dfsTargetNodeHelper(const std::string &node, const std::string &targetNode,
                                             unordered_set<std::string> &visited, vector<pair<std::string, int>> &path,
@@ -97,6 +101,7 @@ bool RouteOptimization::dfsTargetNodeHelper(const std::string &node, const std::
     }
     return false;
 }
+
 // public function to perform bfsAllNodes starting from a given node
 void RouteOptimization::bfsAllNodes(const string &startNode) const {
     unordered_set<string> visited;                                      // set to track visited nodes
@@ -123,6 +128,7 @@ void RouteOptimization::bfsAllNodes(const string &startNode) const {
     }
     cout << endl;
 }
+
 // public function to perform bfs to a target node from a given starting node
 void RouteOptimization::bfsTargetNode(const std::string &startNode, const std::string &targetNode) const {
     unordered_set<string> visited;                      // track visited nodes
@@ -153,7 +159,7 @@ void RouteOptimization::bfsTargetNode(const std::string &startNode, const std::s
             path.push_back(startNode);
             reverse(path.begin(), path.end());
 
-            cout << "Shortest path (BFS) from " << startNode << " to " << targetNode << ":" << endl;
+            cout << "Shortest Path (BFS) from " << startNode << " to " << targetNode << ":" << endl;
             for (size_t i = 0; i < path.size(); i++) {
                 if (i > 0) cout << " -> ";
                 cout << path [i];
@@ -176,12 +182,14 @@ void RouteOptimization::bfsTargetNode(const std::string &startNode, const std::s
     // if not found
     cerr << "Error: Target Node " << targetNode << " not reachable from " << startNode << "." << endl;
 }
+
 // custom comparator for priority queue for Dijkstra
 struct Compare {
     bool operator()(const pair<int, string>& a, const pair<int, string>& b) {
         return a.first > b.first;           // min-heap based on distance
     }
 };
+
 // dijkstra's algorithm to find shortest paths from a start node
 void RouteOptimization::dijkstraAllNodes(const std::string &startNode) const {
     priority_queue<pair<int, string>, vector<pair<int, string>>, Compare> pq;
@@ -242,6 +250,7 @@ void RouteOptimization::dijkstraAllNodes(const std::string &startNode) const {
         }
     }
 }
+
 // dijkstra's algorithm to find shortest path to a target node
 bool RouteOptimization::dijkstraTargetNode(const std::string &startNode, const std::string &targetNode) const {
     priority_queue<pair<int, string>, vector<pair<int, string>>, Compare> pq;
@@ -263,7 +272,7 @@ bool RouteOptimization::dijkstraTargetNode(const std::string &startNode, const s
 
         // if we reached the target node, reconstruct and display path
         if (currentNode == targetNode) {
-            cout << "Shortest path to node " << targetNode << ":" << endl;
+            cout << "Shortest path (Dijkstra) from " << startNode << " to " << targetNode << ":" << endl;
             string path = targetNode;
             string current = targetNode;
             int totalWeight = distance[targetNode];

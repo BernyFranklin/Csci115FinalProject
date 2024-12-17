@@ -16,17 +16,21 @@ AvlOrderList::~AvlOrderList() {
     deleteNodes(root);
 }
 
+// private helper used for balancing
 int AvlOrderList::getHeight(Node* node) const {
     return node ? node->height : -1;
 }
 
+// public used for balancing
 int AvlOrderList::getHeight() const {return getHeight(root);}
 
+// private helper also used for balancing
 int AvlOrderList::getBalanceFactor(Node* node) const {
     return node ? getHeight(node->left) - getHeight(node->right) : 0;
 }
 
 //rotations
+// private left
 AvlOrderList::Node* AvlOrderList::rotateLeft(Node* node) {
     // rotate the nodes
     // step 1: set the new root to the right child of the current node
@@ -44,7 +48,7 @@ AvlOrderList::Node* AvlOrderList::rotateLeft(Node* node) {
     // step 6: return the new root of the rotated subtree
     return newRoot;
 }
-
+// private right
 AvlOrderList::Node* AvlOrderList::rotateRight(Node* node) {
     // step 1: set the new root  to the left child of the current node
     Node* newRoot = node->left;
@@ -61,14 +65,14 @@ AvlOrderList::Node* AvlOrderList::rotateRight(Node* node) {
     // step 6: return the new root of the rotated subtree
     return newRoot;
 }
-
+// private left right
 AvlOrderList::Node* AvlOrderList::rotateLeftRight(Node* node) {
     // rotate left
     node->left = rotateLeft(node->left);
     // rotate right and return
     return rotateRight(node);
 }
-
+// private right left
 AvlOrderList::Node* AvlOrderList::rotateRightLeft(Node* node) {
     // rotate right
     node->right = rotateRight(node->right);
@@ -76,6 +80,7 @@ AvlOrderList::Node* AvlOrderList::rotateRightLeft(Node* node) {
     return rotateLeft(node);
 }
 
+// private inserts node to tree
 AvlOrderList::Node* AvlOrderList::insert(Node* node, const Order& order) {
     if (!node) {
         return new Node(order);
@@ -115,14 +120,15 @@ AvlOrderList::Node* AvlOrderList::insert(Node* node, const Order& order) {
 }
 
 // required functions
+// public add
 void AvlOrderList::addOrder(const Order& order) {
     root = insert(root, order);
 }
-
+// public search
 Order *AvlOrderList::searchByOrderId(const string &orderId) const {
     return searchNode(root, orderId);
 }
-
+// private helper for search
 Order* AvlOrderList::searchNode(Node* node, const std::string& orderId) const {
     if (node == nullptr) {
         return nullptr; // Base case: not found
@@ -138,7 +144,7 @@ Order* AvlOrderList::searchNode(Node* node, const std::string& orderId) const {
         return searchNode(node->right, orderId); // Search right subtree
     }
 }
-
+// private helper for traversal
 void AvlOrderList::traverseInOrder(Node* node) const {
     if (!node) return;
 
@@ -146,7 +152,7 @@ void AvlOrderList::traverseInOrder(Node* node) const {
     node->data.displayOrder(); // Assuming displayOrder() is implemented in Order
     traverseInOrder(node->right);
 }
-
+// public traversal
 void AvlOrderList::traverseInOrder() const {
     traverseInOrder(root);
 }
@@ -165,6 +171,7 @@ void collectInOrder(const BstOrderList::Node* node, vector<Order>& orders) {
     collectInOrder(node->right, orders);
 }
 
+// converts a bst tree into avl
 void AvlOrderList::convertFromBst(const BstOrderList& bst) {
     // Step 1: Collect all orders from the BST in sorted order
     std::vector<Order> orders;
@@ -181,7 +188,7 @@ void AvlOrderList::convertFromBst(const BstOrderList& bst) {
         addOrder(order); // Insert into the AVL tree
     }
 }
-
+// private helper for removal
 AvlOrderList::Node* AvlOrderList::removeNode(Node* node, const std::string& orderId) {
     if (node == nullptr) {
         return nullptr; // Base case: node not found
@@ -223,17 +230,18 @@ AvlOrderList::Node* AvlOrderList::removeNode(Node* node, const std::string& orde
     // Rebalance the tree
     return balance(node);
 }
+// public remove
 void AvlOrderList::removeOrder(const std::string& orderId) {
     root = removeNode(root, orderId);
 }
-
+// private helper to find the minimum
 AvlOrderList::Node* AvlOrderList::findMin(Node* node) const {
     while (node->left != nullptr) {
         node = node->left;
     }
     return node;
 }
-
+// private balance function
 AvlOrderList::Node* AvlOrderList::balance(Node* node) {
     int balanceFactor = getBalanceFactor(node);
 
@@ -257,7 +265,7 @@ AvlOrderList::Node* AvlOrderList::balance(Node* node) {
 
     return node; // Already balanced
 }
-
+// used to export tree to create an image
 void AvlOrderList::exportTree(const std::string& filename) const {
     ofstream out(filename);
 
@@ -277,7 +285,7 @@ void AvlOrderList::exportTree(const std::string& filename) const {
     out.close();
     std::cout << "Tree exported to " << filename << std::endl;
 }
-
+// used in above function
 void AvlOrderList::exportNode(std::ofstream& out, Node* node) const {
     if (node == nullptr) {
         return;

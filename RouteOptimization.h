@@ -28,4 +28,5 @@ public:
     bool dijkstraTargetNode(const string& startNode, const string& targetNode) const;
 
 };
+
 #endif

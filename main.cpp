@@ -9,6 +9,7 @@
 #include "BstOrderList.h"
 #include "AvlOrderList.h"
 #include "RouteOptimization.h"
+#include "TimedOperations.h"
 
 using namespace std;
 
@@ -32,7 +33,6 @@ int main() {
     // file contains the original sample input of 50 orders
     // replace this string to match where the folder is on YOUR machine
     string orderFile = "/Users/frankbernal/CLionProjects/Csci115FinalProject/sampleOrders.txt";
-
     // create the array
     ArrayOrderList arrayList;
     // load values
@@ -66,15 +66,6 @@ int main() {
 
     // create graph
     RouteOptimization route;
-    cout << "Weighted Directed Graph:" << endl;
-    // display graph
-    route.displayGraph();
-    // perform dfsAllNodes starting at node "A"
-    route.dfsAllNodes("A");
-    route.bfsAllNodes("A");
-    route.bfsTargetNode("A", "J");
-    route.dfsTargetNode("A", "J");
     route.dijkstraAllNodes("A");
-    route.dijkstraTargetNode("A", "J");
     return 0;
 }
