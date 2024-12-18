@@ -40,7 +40,7 @@ void SinglyOrderList::addOrder(const Order &order) {
 
 // remove order by orderId
 void SinglyOrderList::removeOrder(const std::string &orderId) {
-    string successString = "\n\nOrder with ID " + orderId + " removed successfully.\n";
+
     // empty list case
     if (!head) {
         cerr << "Error: the list is empty." << endl;
@@ -74,7 +74,6 @@ void SinglyOrderList::removeOrder(const std::string &orderId) {
     // delete node
     delete targetNode;
     size--;
-    cout << successString;
 }
 
 // update priority by orderId

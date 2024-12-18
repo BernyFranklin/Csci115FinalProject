@@ -1,6 +1,7 @@
 #ifndef USERINTERFACE_H
 #define USERINTERFACE_H
 #include "Orders.h"
+#include "ArrayOrderList.h"
 #include <iostream>
 using namespace std;
 
@@ -13,5 +14,6 @@ public:
     static bool validInput(char& userInput);
     static Order addOrder(string& orderId);
     static string getOrderId();
+    static string generateOrderId(ArrayOrderList& list);
 };
 #endif

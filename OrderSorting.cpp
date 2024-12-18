@@ -9,7 +9,7 @@
 
 using namespace std;
 
-string sortedString = "\n\nOrders sorted by priority in ascending order using ";
+string sortedString = "\nOrders sorted by priority in ascending order";
 
 // generates N Order objects and stores them in an ArrayOrderList
 void OrderSorting::generateOrders(int n, ArrayOrderList& list) {
@@ -32,7 +32,7 @@ void OrderSorting::generateOrders(int n, ArrayOrderList& list) {
         list.addOrder(Order(orderId, priority, string(1, destination)));
 
         // increment destination, cycling through A-Z
-        destination = (destination == 'Z') ? 'A' : destination + 1;
+        destination = (destination == 'J') ? 'B' : destination + 1;
     }
 }
 
@@ -165,7 +165,7 @@ void mergeSortHelper(ArrayOrderList& list, int left, int right) {
 }
 void OrderSorting::mergeSort(ArrayOrderList &list) {
     mergeSortHelper(list, 0, list.getSize() - 1);
-    cout << sortedString << "Merge Sort." << endl;
+    cout << sortedString << endl;
 }
 
 // performs quick sort of ArrayOrderList and sorts by priority
@@ -197,7 +197,7 @@ void quickSortHelper(ArrayOrderList& list, int low, int high) {
 }
 void OrderSorting::quickSort(ArrayOrderList& list) {
     quickSortHelper(list, 0, list.getSize() - 1);
-    cout << sortedString << "Quick Sort." << endl;
+    cout << sortedString << endl;
 }
 
 

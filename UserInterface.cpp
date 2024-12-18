@@ -3,12 +3,16 @@
 #include <iostream>
 #include <cctype>
 #include <string>
+#include <sstream>
+#include <iomanip>
 using namespace std;
 
 void UserInterface::displayMenu() {
      bigLine();
-     cout << "Please choose one of the following options:" << endl;
+     cout << "Main Menu" << endl;
      bigLine();
+     cout << "Please choose one of the following options:" << endl;
+     lilLine();
      cout << "1.\tView Order Listings Ascending" << endl
           << "2.\tView Order Listings Descending" << endl
           << "3.\tAdd Order" << endl
@@ -89,4 +93,9 @@ string UserInterface::getOrderId() {
     cin >> userInput;
     transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
     return userInput;
+}
+string UserInterface::generateOrderId(ArrayOrderList &list) {
+    ostringstream oss;
+    oss << "ORD" << hex << uppercase << setfill('0') << setw(4) << (list.getSize() + 1);
+    return oss.str();
 }

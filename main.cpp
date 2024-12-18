@@ -1,6 +1,14 @@
 /*
- * Thanks for a great semester professor
- * I look forward to checking out the lab sometime soon
+ * Thanks for a great semester Professor Carrasco,
+ * I look forward to checking out the lab sometime soon.
+ *
+ * The main program keeps all the data structures intact and updates all of them during runtime,
+ * while unnecessary, since we implemented them, I kept them.
+ * I changed the orderId numbering system to be ORDxxxx, and the xxxx's are sequential in hex
+ * I also changed the locations to B-J, that way the hub is location A, and every order
+ * route can be traced.
+ * The user interface is self-explanatory and easy to use.
+ * Enjoy
  */
 
 #include <iostream>
@@ -18,15 +26,13 @@
 using namespace std;
 
 int main() {
-    // file contains the original sample input of 50 orders
-    // replace this string to match where the folder is on YOUR machine
-    string orderFile = "/Users/frankbernal/CLionProjects/Csci115FinalProject/sampleOrders.txt";
-
+    // orders to create, feel free to fill with 1-65,535 orders
+    // 1000 still seems instant on my machine
+    int n = 1000;
     // create the array
     ArrayOrderList arrayList;
     // load values
-    arrayList.loadFromFile(orderFile);
-
+    OrderSorting::generateOrders(n, arrayList);
 
     // create the SinglyLinkedList
     SinglyOrderList singlyList;
@@ -56,26 +62,34 @@ int main() {
     // create graph
     RouteOptimization route;
 
-    char userInput = 'x';
+    // initialize userInput and loop variable
+    char userInput;
     bool userQuit = false;
+
+    // start program
     while(!userQuit) {
+        // extra blank space for clarity
         cout << endl;
-        string ordId = "ORD" + to_string(arrayList.getSize() + 1);
+
+        // main menu
         UserInterface::displayMenu();
         userInput = UserInterface::getInput();
+        cout << endl;
+        // userInput
         switch(userInput) {
             case '1': {
-                cout << "\nView Order Listings Ascending" << endl;
+                cout << "View Order Listings Ascending" << endl;
                 singlyList.displayOrders();
             }
                 break;
             case '2': {
-                cout << "\nView Order Listings Descending" << endl;
+                cout << "View Order Listings Descending" << endl;
                 doublyList.displayBackward();
             }
                 break;
             case '3': {
-                cout << "\nAdd Order" << endl;
+                cout << "Add Order" << endl;
+                string ordId = UserInterface::generateOrderId(arrayList);
                 Order newOrder = UserInterface::addOrder(ordId);
                 arrayList.addOrder(newOrder);
                 singlyList.addOrder(newOrder);
@@ -83,13 +97,13 @@ int main() {
                 skipList.addOrder(newOrder);
                 bst.addOrder(newOrder);
                 avl.addOrder(newOrder);
-                cout << "\n\nOrder with ID " << ordId << " added" << endl;
+                cout << "\nOrder with ID " << ordId << " added" << endl;
                 newOrder.displayOrder();
-                cout << "\n\n";
+                cout << "\n";
             }
                 break;
             case '4': {
-                cout << "\nDelete Order" << endl;
+                cout << "Delete Order" << endl;
                 string orderId = UserInterface::getOrderId();
                 bool found = avl.searchByOrderId(orderId);
                 if (found) {
@@ -99,8 +113,9 @@ int main() {
                     skipList.removeOrder(orderId);
                     bst.removeOrder(orderId);
                     avl.removeOrder(orderId);
+                    cout << "\nOrder with ID " + orderId + " removed successfully.\n";
                 } else {
-                    cout << "\nOrder not found" << endl;
+                    cout << "Order not found" << endl;
                 }
             }
                 break;
@@ -118,23 +133,25 @@ int main() {
             }
                 break;
             case '6': {
-                cout << "\nView Route by Order ID" << endl;
+                cout << "View Route by Order ID" << endl;
                 string orderId = UserInterface::getOrderId();
                 Order* targetOrder = avl.searchByOrderId(orderId);
                 if (!targetOrder) {
-                    cout << "\nOrder not found" << endl;
+                    cout << "Order not found" << endl;
                 }
                 else {
+                    targetOrder->displayOrder();
                     string destination = targetOrder->getDestination();
                     route.dijkstraTargetNode("A", destination);
                 }
             }
                 break;
             case '7': {
-                cout << "\nSort and View by Priority" << endl;
-                OrderSorting::quickSort(arrayList);
+                cout << "Sort and View by Priority" << endl;
+                // used merge sort to preserve relative order
+                OrderSorting::mergeSort(arrayList);
                 arrayList.displayOrders();
-                cout << "\n\n";
+                cout << "\n";
             }
                 break;
             default:
