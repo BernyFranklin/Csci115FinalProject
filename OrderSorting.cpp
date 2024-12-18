@@ -149,7 +149,7 @@ void merge(ArrayOrderList& list, int left, int mid, int right) {
     // copy remaining values from both temp arrays
     while (i < n1) list.setOrder(k++, leftArray[i++]);
     while (j < n2) list.setOrder(k++, rightArray[j++]);
-    logIntermediateState(list, "/Users/frankbernal/CLionProjects/Csci115FinalProject/sorting_steps.txt");
+
 }
 void mergeSortHelper(ArrayOrderList& list, int left, int right) {
     if (left < right) {
